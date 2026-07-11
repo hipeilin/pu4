@@ -1,0 +1,1084 @@
+% \documentclass[journal]{vgtc}                     % final (journal style)
+%\documentclass[journal,hideappendix]{vgtc}        % final (journal style) without appendices
+%\documentclass[review,journal]{vgtc}              % review (journal style)
+%\documentclass[review,journal,hideappendix]{vgtc} % review (journal style)
+%\documentclass[widereview]{vgtc}                  % wide-spaced review
+\documentclass[preprint,journal]{vgtc}            % preprint (journal style)
+
+
+%% Uncomment one of the lines above depending on where your paper is
+%% in the conference process. ``review'' and ``widereview'' are for review
+%% submission, ``preprint'' is for pre-publication in an open access repository,
+%% and the final version doesn't use a specific qualifier.
+
+%% If you are submitting a paper to a conference for review with a double
+%% blind reviewing process, please use one of the ``review'' options and replace the value ``0'' below with your
+%% OnlineID. Otherwise, you may safely leave it at ``0''.
+\onlineid{0}
+
+%% In preprint mode you may define your own headline. If not, the default IEEE copyright message will appear in preprint mode.
+%\preprinttext{To appear in IEEE Transactions on Visualization and Computer Graphics.}
+
+%% In preprint mode, this adds a link to the version of the paper on IEEEXplore
+%% Uncomment this line when you produce a preprint version of the article 
+%% after the article receives a DOI for the paper from IEEE
+%\ieeedoi{xx.xxxx/TVCG.201x.xxxxxxx}
+
+%% declare the category of your paper, only shown in review mode
+\vgtccategory{Research}
+
+%% please declare the paper type of your paper to help reviewers, only shown in review mode
+%% choices:
+%% * algorithm/technique
+%% * application/design study
+%% * evaluation
+%% * system
+%% * theory/model
+\vgtcpapertype{application/design study}
+
+%% Paper title.
+\title{Revealing Interaction Dynamics: Multi-Level Visual Exploration of User Strategies with an Interactive Digital Environment}
+
+%% Author ORCID IDs should be specified using \authororcid like below inside
+%% of the \author command. ORCID IDs can be registered at https://orcid.org/.
+%% Include only the 16-digit dashed ID.
+\author{%
+  \authororcid{Peilin Yu}{0000-0003-4820-6123},
+  \authororcid{Aida Nordman}{0000-0002-9601-5981},
+  \authororcid{Marta Koc-Januchta}{0000-0001-6313-475X},
+  \authororcid{Konrad Sch\"{o}nborn}{0000-0001-8888-6843},
+  \authororcid{Lonni Besan{\c c}on}{0000-0002-7207-1276},
+  \authororcid{Katerina Vrotsou}{0000-0003-4761-8601}
+}
+
+\authorfooter{
+  %% insert punctuation at end of each item
+  \item
+  	Peilin Yu, Aida Nordman, Marta Koc-Januchta, Konrad Sch\"{o}nborn, Lonni Besan{\c c}on, and Katerina Vrotsou are with Link\"{o}ping University.
+  	E-mail: \{first\_name.last\_name\}@liu.se
+}
+
+%% Abstract section.
+\abstract{%
+We present a visual analytics approach for multi-level visual exploration of users’ interaction strategies in an interactive digital environment.
+The use of interactive touchscreen exhibits in informal learning environments, such as museums and science centers, often incorporate frameworks that classify learning processes, such as Bloom’s taxonomy, to achieve better user engagement and knowledge transfer.
+To analyze user behavior within these digital environments, interaction logs are recorded to capture diverse exploration strategies.
+However, analysis of such logs is challenging, especially in terms of coupling interactions and cognitive learning processes, and existing work within learning and educational contexts remains limited.
+To address these gaps, we develop a visual analytics approach for analyzing interaction logs that supports exploration at the individual user level and multi-user comparison. 
+The approach utilizes algorithmic methods to identify similarities in users' interactions and reveal their exploration strategies.
+We motivate and illustrate our approach through an application scenario, using event sequences derived from interaction log data in an experimental study conducted with science center visitors from diverse backgrounds and demographics.
+The study involves 14 users completing tasks of increasing complexity, designed to stimulate different levels of cognitive learning processes.
+We implement our approach in an interactive visual analytics prototype system, named VISID, and together with domain experts, discover a set of task-solving exploration strategies, such as ``cascading'' and ``nested-loop'', which reflect different levels of learning processes from Bloom's taxonomy. 
+Finally, we discuss the generalizability and scalability of the presented system and the need for further research with data acquired in the wild.
+  %
+  %% We recommend that you link to your supplemental material here in the abstract, as well
+  %% as in the Supplemental Materials section at the end.
+% A free copy of this paper and all supplemental materials are available at \url{https://OSF.IO/2NBSG}.
+}
+
+%% Keywords that describe your work. Will show as 'Index Terms' in journal
+%% please capitalize first letter and insert punctuation after last keyword
+\keywords{Visual analytics, Visualization systems and tools, Interaction logs, Visualization techniques, Visual learning.}
+
+%% A teaser figure can be included as follows
+\teaser{
+  \centering
+  \includegraphics[
+  width=.95\linewidth, 
+  alt={
+  A view of the main components of the proposed visual analytics prototype system VISID. 
+  There are five components displayed. 
+  First is the Individual View, which visualizes a participant's attribute changes for gender and interaction event sequences. 
+  Second is the Holistic View, which displays interface events showing the lifetime duration and concurrently opened infopanels for Task 3. 
+  Third is the Comparison View, which displays sorted interaction sequences according to the similarity compared to the baseline participant P7. 
+  Fourth is the similarity score bars and delta values depict the similarity and dissimilarity with respect to the baseline participant. 
+  Lastly, the Cluster View shows potential clusters of similar participants.
+  }
+  ]{teaser}
+  \caption{
+  The main components of VISID.
+  The \textsc{Individual View}, featuring (1) \textit{Interaction View} that visualizes a participant's attribute changes for \textit{Gender} and interaction event sequences. 
+  Each event is uniformly colored, with the background indicating statistical categories. 
+  Additional details emerge upon hovering.
+  (2) \textit{Holistic View} displays interface events showing the lifetime duration and concurrently opened infopanels for Task $3$.
+  The \textsc{Comparison View} offers (3) \textit{Sequence Comparison Visualization} sorting interaction sequences by similarity to the baseline participant P$7$.
+  Participants that are most similar to P$7$ also adopt a similar strategy.
+  Each event is colored by \textit{Municipality}, with attribute change sequences for \textit{Year} and \textit{Gender} superposed. 
+  (4) The similarity score bars and delta values depict the similarity/dissimilarity w.r.t. the baseline participant.
+  (5) \textit{Cluster View} shows potential clusters of similar participants.
+  }
+  \label{fig:teaser}
+}
+
+%% Uncomment below to disable the manuscript note
+%\renewcommand{\manuscriptnotetxt}{}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+%\nocopyrightspace
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% LOAD PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Tell graphicx where to find files for figures when calling \includegraphics.
+%% Note that due to the \DeclareGraphicsExtensions{} call it is no longer necessary
+%% to provide the the path and extension of a graphics file:
+%% \includegraphics{diamondrule} is completely sufficient.
+\graphicspath{{figs/}{figures/}{pictures/}{images/}{./}} % where to search for the images
+
+%% Only used in the template examples. You can remove these lines.
+\usepackage{tabu}                      % only used for the table example
+\usepackage{booktabs}                  % only used for the table example
+\usepackage{lipsum}                    % used to generate placeholder text
+\usepackage{mwe}                       % used to generate placeholder figures
+
+%% We encourage the use of mathptmx for consistent usage of times font
+%% throughout the proceedings. However, if you encounter conflicts
+%% with other math-related packages, you may want to disable it.
+\usepackage{mathptmx}                  % use matching math font
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The ``\maketitle'' command must be the first command after the
+%% ``\begin{document}'' command. It prepares and prints the title block.
+%% the only exception to this rule is the \firstsection command
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Introduction %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\firstsection{Introduction}
+\label{sec:introduction}
+
+\maketitle
+
+%% In preprint mode you may define your own headline.
+%% If not, the default IEEE copyright message will appear in preprint mode.
+%\preprinttext{To appear in Proceedings of TODO.}
+\makeatletter
+\preprinttext{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. 
+This is the author's version of the article published in IEEE Transactions on Visualization and Computer Graphics. 
+The final version of this record is available at: \href{https://ieeexplore.ieee.org/document/10670552}{\color{blue}\vgtc@DOI} Personal use of this material is permitted.}}
+\makeatother
+%% This adds a link to the version of the paper on IEEEXplore
+%% Uncomment this line when you produce a preprint version of the article 
+%% after the article receives a DOI for the paper from IEEE
+\ieeedoi{10.1109/TVCG.2024.3456187}
+
+
+In contemporary informal learning contexts, such as museums and science centers, the integration of large touchscreen displays has become prevalent. 
+These interactive exhibits are designed to encourage and prolong user engagement, retention, understanding, and knowledge transfer by aligning them with educational frameworks and enhancing learning by scaffolding various cognitive processes. 
+One such framework is Bloom's taxonomy, developed to define learning processes in an observable, measurable way, making learning and knowledge acquisition distinguishable from a lack thereof~\cite{Bloom56Taxonomy, Anderson2001Taxonomy}.
+
+To acquire insights and conduct a systematic analysis of user behavior, interactions between users and the touchscreen are commonly logged. 
+This logging results in real-world event sequences that reflect the exploration approaches that individuals adopt.
+Existing work that leverages visual analytics to analyze such data has limited application in educational or learning settings.
+Few existing systems couple user interactions and cognitive learning processes.
+Our goal is to bridge this gap by exploring the intricacies of user behaviors and interaction strategies to reveal interaction dynamics within interactive digital environments. 
+To this end, we introduce a visual analytics (VA) approach designed to assist analysts in the interactive exploration of interaction logs and in coupling user interactions with cognitive learning processes.
+
+To achieve this, the proposed approach supports multi-level visualization to facilitate 
+(1) exploration of interactions at the individual user level and multi-user comparison; (2)  exploration of user interactions on three granularity levels; the interface level, the system interaction level, and the detailed attribute change level, and (3) algorithmic support to measure the similarity of users' interactions, leading to the discovery and identification of interaction strategies among them.
+
+Our VA  methodology was designed by a co-creative team of domain experts in visualization (VIS) and visual learning and communication (VLC), all of whom are co-authors of this paper. 
+We illustrate the proposed approach through an application scenario using event sequences derived from interaction logs.
+The logs originate from a user experiment involving science center visitors with diverse backgrounds and demographics, engaged in tasks of increasing complexity using an interactive touchscreen exhibit.
+The contributions of this paper are summarized as follows:
+\begin{itemize}[itemsep=0pt,topsep=1pt]
+    \item \textbf{Problem and data description}. We define a set of requirements for informal education settings that supports a data-driven approach to understanding users' exploration strategies.
+    
+    \item \textbf{Interactive system}. We propose a VA prototype system, named VISID (\textbf{VIS}ualization of \textbf{I}nteraction \textbf{D}ynamics), which supports multi-level and multi-granular exploration of event sequence data built from a user-centered design approach.
+    
+    \item \textbf{Application scenario}. We collect a real-world dataset and perform a case study to demonstrate the usefulness and applicability of the proposed approach.
+\end{itemize}
+Finally, we discuss various aspects, including generalizability, limitations, and future work from a multidisciplinary collaboration.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background and Motivation}
+\label{sec:background_motivation}
+
+We establish the context for our work with the background necessary to understand the problem domain and co-design of a solution.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Exploranation for Learning and Communication}
+
+Museums, science centers, and out-of-classroom learning environments adopt interactive visualizations to foster scientific communication, generate interest in STEM (Science, Technology, Engineering, Mathematics), raise awareness about societal issues~\cite{Besanccon22Exploring}, and increase data visualization literacy of general audiences~\cite{Katy16Investigating}. 
+Contemporary visualization examples include the plankton table at the Exploratorium~\cite{Ma12Plankton, Ma20Decoding} and Inside Explorer at the Norrk\"{o}ping Visualization Center \cite{Ynnerman16Interactive}, with other systems described in the literature~\cite{Bottinger20Reflections, Rheingans2020Reaching, Hinrichs08EMDialog, Krone17From}. 
+Underlying the design, interactive, and communicative affordances of these interactive visualization environments is the construct of \textit{exploranation}~\cite{Ynnerman18Exploranation, Host20Nano}. 
+The exploranation concept combines exploratory and explanatory visualization to scaffold communication and learning. 
+It thus provides a new learning paradigm in out-of-classroom contexts~\cite{Schwan14Understanding} and offers high potential for bringing knowledge to underserved communities~\cite{Archer16Urabn}. 
+To date, exploranation has been applied to various domains of scientific communication, including astronomy~\cite{Bock18OpenSpace, Bock20OpenSpace},  nanoscience~\cite{Host20Nano}, chemistry \cite{Jia24VOICE}, molecular dynamics~\cite{Brossier23Moliverse}, and climate change~\cite{Besanccon22Exploring}.
+
+To adapt current and future exploranative exhibits, it is imperative to gain insight into how science center visitors interact with exploranative systems. 
+While, on the one hand, designing meaningful and engaging interaction techniques is essential for inspecting and understanding data~\cite{Hinrichs08EMDialog}, the design of interactive techniques for science communication in public contexts is currently understudied~\cite{Besancon21STAR}.
+As public spaces are considered ``out-of-classroom'' or extra-curricular learning contexts~\cite{Andre17Museums} that rely on visitors' interest, the design of visualization environments as meaningful tools for communication has to be carefully and systematically considered. 
+Yet, the study of visitors' interaction strategies and learning outcomes is complicated, and often carried out by scrutinizing raw interaction data, which is also sometimes combined with video recordings~\cite{Schonborn11Exploring}. 
+It is within this context that we propose a VA approach for analyzing visitors' interaction logs that could benefit both exploranative system designers and science center role-players. 
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{An Exploranative Environment: Sweden in Numbers}
+\label{sec:SiN}
+
+Exploranative environments share two design fundamentals: scientific data or authentic information underlies the visual content, and there are affordances for the user to interact with the information or dataset.
+
+The digital environment in focus in this work is called ``Sweden in Numbers'' (SiN), an exhibit part of the Norrk\"{o}ping Visualization Center, a prominent venue for applying the exploranation concept. 
+``Sweden In Numbers'' is designed for the visual exploration of real demographic and societal data about Sweden. 
+The system visualizes the data on an interactive map of Sweden and offers access to statistical summaries of a set of demographics.
+An overview of the SiN touch interface is illustrated in~\cref{fig:SiN}.
+The statistical categories available for exploranation are \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}. 
+A category can be selected for exploration at the bottom of the screen and the coupled coloring of the map is adjusted to that category. 
+Sweden can be explored at a \textit{county} or \textit{municipality} level. 
+Tapping a county/municipality on the map (or selecting from an adjacent textual list) triggers a bubble-shaped pop-up of an information panel, infopanel, that displays statistics corresponding to the chosen category and county/municipality.
+Characterizing attributes, such as \textit{Gender} and \textit{Year}, of each category can then be explored within each infopanel. 
+A slider on each information panel allows the data to be explored over time (in the unit \textit{year}) with filters available to filter by \textit{gender} or by available subcategory.
+User interactions with SiN are logged to analyze usage and gain information for communication and educational research purposes. 
+The core logged interactions are: 
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \textit{Category selection}. A log event is created when a new statistical category is selected. 
+    
+    \item \textit{Information panel (infopanel) creation/deletion}. A log event is created upon the creation or deletion of an infopanel.
+    
+    \item \textit{Filter creation}. A filtering event is created following the creation of an infopanel logging the default attributes.
+    
+    \item \textit{Filter update}. On each attribute change made by the user, a filter update event is logged saving the new attribute values.
+\end{itemize}
+Information concerning visual elements and interactions on the interface level are not logged, such as the screen position, dragging and dropping of infopanels, and panning and zooming on the interface.
+
+\begin{figure}
+    \centering
+    \includegraphics[
+    width=.88\columnwidth,
+    alt={
+    A screenshot of The Sweden in Numbers exhibit.
+    In the screenshot, one infopanel displays Age statistics in red, and another two infopanels display Income statistics in green, for males and females respectively, within the same municipality.
+    }]{SiN_system}
+    \caption{The ``Sweden in Numbers'' exhibit: one infopanel displays \textit{Age} statistics (red) another two infopanels display \textit{Income} statistics (green), for ``Male'' and ``Female'' respectively, within the same municipality.}
+    \label{fig:SiN}
+\end{figure}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Related Work %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+\label{sec:related_work}
+
+We survey existing approaches to visualizing event sequences and different techniques used for visual comparison including similarity measures relevant to event sequence comparisons.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Event Sequence Visualization}
+
+While statistical evaluation can provide interaction frequencies, visual analysis offers a richer understanding of interaction sequences, enhancing sense-making~\cite{Chang09Defining, Kang09Evaluating}. 
+A variety of techniques exist to visualize event sequences, including timelines~\cite{Deng22Visual, Krstajic11CloudLines, Han22HisVA}, matrix-based design~\cite{Chen20LDA, Zhao15MatrixWave}, Sankey-based diagrams~\cite{Guo19Visual, Bartolomeo21Sequence, Wongsuphasawat11Outflow}, and other chart-based representations, summarized in recent surveys~\cite{Anton22Survey, Guo22Survey, ElTayeby16Survey}.
+
+In this work, we adopt a timeline-based representation for organizing sequences in temporal order, as it is considered an intuitive approach for displaying events chronologically~\cite{Guo22Survey}. 
+However, this approach may increase cognitive load, making it challenging to identify patterns~\cite{Brehmer17Timelines}.
+To overcome this challenge, additional interactive visualizations have been proposed to explore temporal patterns in large datasets. 
+For example, event sequences are summarized using aggregation~\cite{Magallanes22Sequen, Chen18Sequence} or provide high-level comparison using sequence collections~\cite{Nguyen19Understanding}. 
+In other work, patterns are explicitly mined using pattern mining techniques~\cite{Liu17Patterns, Perer14Frequence, Vrotsou19Exploratory}.
+In this work, we do not aggregate event sequences to preserve details. 
+Instead, we utilize overview+detail, details-on-demand~\cite{Shneiderman1996The}, and nested juxtaposed (combining superposition) layout~\cite{Gleicher11Visual} to reduce visual clutter in the overview.
+Our design space consists of chronological linear representation and deploys both unified (single timeline) and faceted (multiple timelines)~\cite{Brehmer17Timelines} layout since we focus on both individual and comparative multiple user interaction.
+
+Advances in VA systems exhibit a growing trend of integrating information from multiple sources.
+For example,\textit{ VA$^{2}$} combines interaction logs, think-aloud protocols, and eye-tracking data~\cite{Blascheck16VA2}. 
+\textit{VisCoMET} additionally uses recorded videos of the training sessions in a healthcare context~\cite{Liebers23VisCoMET}. 
+Blascheck et al. integrate the above-mentioned information sources to extract a set of exploration strategies~\cite{Blascheck19Exploration}.
+\textit{IntiVisor} supports event organization and pattern discovery for interaction log analysis~\cite{Han24IntiVisor}.
+Others utilize recorded low-level interaction data and infer cognitive traits such as personality~\cite{Brown14Finding} and abstraction of semantically meaningful behavior characteristics~\cite{Carlton18Using}.
+We consider only some of the low-level inputs, (e.g., tapping, opening, and closing events) and aim to couple these to cognitive processes, due to the limitation of certain interactions are not logged by the SiN exhibit, such as zooming and panning (as detailed in~\cref{sec:SiN}).
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Event Sequence Comparison}
+\label{subsec:event_seq_comp}
+
+Various visualization techniques that support event sequence comparison are surveyed~\cite{Linden23Survey, Anton22Survey, Guo22Survey, Gleicher11Visual}.
+Three categories are identified for visual comparison designs: juxtaposition, superposition, and explicit encodings~\cite{Gleicher11Visual}. 
+In our work, we use a form of juxtaposition similar to previous approaches~\cite{Chen18Sequence, Guo18EventThread, Wongsuphasawat09Finding, Vrotsou19Exploratory}. 
+A nested juxtaposition design is employed by first displaying each object (i.e., a user) adjacent to each other, and superposing (nesting) each object with juxtaposed attribute representations. 
+The nature of juxtaposed design requires the viewer's memory to establish connections between objects. 
+To guide the user's attention between objects and discover patterns, careful design is essential.
+For example, placing the objects sufficiently close together and designing the comparison visualization to fit within the viewer's field of vision would both be desirable~\cite{Tufte06Beautiful}.
+
+Several studies have proposed different techniques to display parallel streams of events and interactions using timeline-based event visualizations~\cite{Linhares23ClinicalPath, Agarwal20Bombalytics, Nguyen19Understanding}. 
+Although similar, existing works focus primarily on investigating events within a single collection (i.e., a single patient or session), rather than comparing multiple ones.
+Besides examining event sequences at the individual user level, we are also interested in comparing multiple users to identify similar users and discover user exploration strategies.
+In addition to visual comparison, we also aim to utilize algorithmic support to enable event sequence comparison, while maintaining the human-in-the-loop during analysis.
+
+A variety of metrics and algorithms are employed across various domains to compare sequences, with their respective advantages and disadvantages surveyed~\cite{Sabrina08Distance, Studer15What}.
+One approach is to treat the sequence as a text string and use a similarity measure. 
+Surveys group these measures into various types, such as lock-step, elastic, threshold, and pattern-based~\cite{Ding08Querying, Saeed06Novel}, or alignment-based and alignment-free~\cite{Zielezinski17Alignment}.
+The Euclidean distance~\cite{Faloutsos94Fast} is one lock-step measure, which is used to compare, for example, the event sequence patterns of a student with other students~\cite{Du16EventAction}.
+However, users often lack the flexibility to customize the similarity measures and maintain a record of findings.
+Another type of measure, known as elastic, such as Dynamic Time Warping (DTW)~\cite{Berndt94Using} allows a sequence to be ``stretched'' or ``compressed'' to better match and align between two sequences.
+String metrics, such as edit distance, are used to measure the difference between two event sequences by treating them as strings~\cite{Yu23Interactive}. 
+This approach does not account for the temporal aspect as it solely considers edit operations and may not effectively distinguish between meaningful events and irrelevant noise.
+In this work, we predominantly focus on analyzing sequences characterized by discrete events occurring over time, where event attributes can be either categorical or numerical in nature.
+To account for the temporal dynamics and to find groupings of similar sequences effectively, we employ an alignment-based approach.
+While our approach may appear akin to cluster analysis, and indeed associated with that direction, our primary intent here is to leverage the ranking output generated by the algorithm as a means to establish a meaningful order for sequence visualization.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% System Design %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{System Design Methodology and Overview}
+\label{sec:system_design}
+
+We engaged in a collaborative design and development process with a team of domain experts in visualization (VIS) and visual learning and communication (VLC). 
+Our team also included an engineer who played a key role in developing the SiN exhibit, the chosen use case for this work, as described in~\cref{sec:background_motivation}.
+We engaged in a series of 12 workshops and regular follow-up meetings over 12 months, following a user-centered design process often employed when designing visualization software for expert users~\cite{Olivier22Visualizing, Pooryousef23Working}.
+
+The objectives of the workshops were to gain a deeper understanding of what insights the VLC experts aim to explore and to discuss the design of VISID iteratively.
+Each workshop spanned approximately two to three hours. 
+In the initial four workshops, we asked domain experts to identify potential key aspects relevant to exploring data from a cognitive learning processes perspective.
+We then distilled and transferred them into a set of system design requirements and design tasks, and set limitations, as detailed in~\cref{subsec:system_req}.
+Following this, we built an initial version of VISID.
+In subsequent workshops, we continuously discussed the key points and iterated over the prototype. 
+Due to our multidisciplinary effort, certain phrases had different meanings; we discussed these to ensure a common understanding.
+We iteratively developed and demonstrated VISID showing its capability to reveal potentially interesting insights in the data, and continuously received feedback and requests on features and functionalities that would aid the VLC experts' investigation.
+Previous visualization designs and prototype versions are also available in supplementary materials.
+
+We performed two data collections throughout our collaboration. 
+First, a pilot study was conducted to acquire a dataset that could be used as a testbed for experimentation during our development process. 
+A second collection round was performed to gather additional new data that would be used separately in a case study for testing VISID (as described in~\cref{sec:case}).
+The data collections were designed systematically to explore if and how cognitive learning processes are reflected in user interactions (as described in~\cref{subsec:tasks_pilot}).
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+\begin{table*}
+    \centering
+    \caption{Alignment of tasks with Bloom's Taxonomy of cognitive processes, associated strategy components, and discovered exploration strategies.}
+\begin{tabular}{@{}llll@{}}
+\hline
+
+\textbf{\begin{tabular}[c]{@{}l@{}}
+Cognitive dimension\\\emph{(Bloom's Taxonomy)}\end{tabular}} & 
+\textbf{\begin{tabular}[c]{@{}l@{}}
+Cognitive strategy\\mapped to tasks\end{tabular}} &
+\textbf{Tasks} &
+\textbf{\begin{tabular}[c]{@{}l@{}}Discovered primary\\exploration strategy\end{tabular}}\\
+\hline
+
+%  Level 1
+Remember &
+Identifying &
+\begin{tabular}[c]{@{}l@{}}Task 1: What is the average number of years of \\education in Norrk\"{o}ping municipality for the year 2017?\end{tabular} &
+Basic retrieval\\
+\hline
+
+%  Level 2
+Understand &
+  Comparing &
+  \begin{tabular}[c]{@{}l@{}}Task 2: Compare the mean salary in the\\Halmstad municipality between men and\\women for the year 2017.\end{tabular} 
+  &\begin{tabular}[c]{@{}l@{}}Within and between\\infopanel comparison\end{tabular}\\
+\hline
+
+%  Level 3
+Apply &
+  Using  &
+  \begin{tabular}[c]{@{}l@{}}Task 3: Which municipality in Halland has the\\highest average salary for women in 2017?\end{tabular} 
+  &Cascading\\
+\hline
+
+%  Level 4
+Analyze &
+\begin{tabular}[c]{@{}l@{}}Organizing,\\Integrating\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Task 4: What is the salary difference between men\\and women in the Norrk\"{o}ping municipality\\in the year 2005 compared with 2017?\end{tabular} 
+  &Nested-loop\\
+\hline
+
+%  Level 5
+\begin{tabular}[c]{@{}l@{}}
+Evaluate \\ \\ 
+Create
+\end{tabular} &
+\begin{tabular}[c]{@{}l@{}}
+Testing \\ \\ 
+Hypothesizing
+\end{tabular} &
+\begin{tabular}[c]{@{}l@{}}Task 5: The salary for both males and females\\in Norrk\"{o}ping municipality is higher in the year\\2017 than it was in 2005. Use the system to\\discover potential factors associated with this change.\end{tabular} &
+\begin{tabular}[c]{@{}l@{}}Mixed explorative/\\confirmative approaches \end{tabular}\\
+\hline
+\end{tabular}
+\label{tab:blooms}
+\end{table*}
+
+\subsection{Data Collection Tasks and Pilot Data}
+\label{subsec:tasks_pilot}
+
+Individuals participating in data collection are henceforth referred to as ``participants'', while domain experts and users of the proposed VISID system are referred to as ``users''. 
+
+We designed five tasks to engage participants in the exploration of SiN. 
+Solving the tasks was intended to involve increasingly complex cognitive learning processes. 
+This hierarchy of cognitive learning processes was based on an application of the revised Bloom’s taxonomy~\cite{Bloom56Taxonomy, Anderson2001Taxonomy, Gil16Aligning}. 
+The decision to design specific tasks, as opposed to allowing participants to freely interact with the touchscreen, was made to investigate engagement with the exhibit during tasks of defined controlled difficulty.
+This approach enables linking between participants' interactions with the exhibit and cognitive learning processes.
+The validity and effectiveness of this approach are also demonstrated in recent works~\cite{Hubbard24Developing, Shao24Data}.
+Moreover, following formal data collection in the experiment, we received insights from participants indicating that prompts in the form of tasks were appreciated as they helped participants maintain engagement with the exhibit. 
+The tasks were initially formulated for the pilot study, and based on its results and experiences, were refined for the subsequent data collection performed as part of our case study. 
+The formulated tasks and their relation to Bloom's revised taxonomy are presented in~\cref{tab:blooms}. 
+Here, the \textit{cognitive dimension} column corresponds to the cognitive domain levels in Bloom's taxonomy ~\cite{Anderson2001Taxonomy}, while the \textit{cognitive strategy} column refers to cognitive learning processes that demonstrate the levels in the context of performing the designed tasks. 
+Cognitive processes associated with performing each specific task are described in~\cref{subsec:discovered_strategies}. 
+Four questions have a distinct solution provided in the SiN interface and are predicted to require cognitive skills such as identifying, comparing, or using information, whereas the final task is of an open-ended and explorative nature that might involve higher-order cognitive skills such as testing or hypothesizing. 
+
+We recruited seven participants for the pilot data collection, including one master's student, three postdocs, one Ph.D. student, and two associate professors. 
+Of these, four were experts/knowledgeable in visualization, and the other three were acquainted/familiar. 
+The pilot study aimed to test the formulation and application of the designed tasks and the logging functionalities of SiN, but most importantly to collect a pilot dataset that would guide the design of VISID. 
+During this phase, we discovered that certain logging functionalities were missing from the SiN exhibit and could be improved compared to the initial version. 
+These missing log entries were discussed during subsequent workshops, their importance concerning their effect on the feasible interaction analysis was assessed, and those crucial for the design and development of VISID were addressed by the involved engineer.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{System Requirements and Analysis Tasks}
+\label{subsec:system_req}
+
+The SiN exhibit (detailed in~\cref{sec:SiN}) logs interactions relating to the creation of interface elements (e.g. when an infopanel is popped up and closed), the interactions with these elements, and the contextual information presented (e.g., updates to attributes such as \textit{Gender} or \textit{Year}). 
+Based on the observations during the pilot study and discussions with the VLC experts during the workshops, we decided to group the log data into these two logged categories, one for \textit{interface elements} (infopanels) and one for \textit{attribute changes}. 
+This allowed us to investigate participants' interactions on the interface level, for example, if a user explored multiple infopanels simultaneously or one at a time, as well as on the attribute change level, e.g., the contextual information explored within these infopanels. 
+This combination of logged interactions shows how participants have explored the visualization application and reveals different exploration strategies when solving the same set of tasks.
+
+A set of five high-level requirements (R$1$-$5$) that guide VISID's design and eight key analytical tasks (T$1$-$8$) that the VA system should support, were defined as a result of our design process, and are presented below. 
+These requirements and tasks were distilled from (1) the discussions, feedback, and lessons learned from the VLC experts collected during workshops; (2) our previous experience developing event sequence analysis systems; and (3) existing surveys~\cite{Guo22Survey, ElTayeby16Survey, Gleicher11Visual, Linden23Survey, Plaisant16Diversity}, as well as existing works and their limitations, as described in~\cref{sec:related_work}.
+
+\noindent 
+\textbf{R1 - Mitigate the effect of noise}. 
+Due to the nature of real-world event sequences and depending on the difficulty level of tasks, participants may need to explore the data through trial and error before reaching a conclusion. 
+This can produce lengthy and noisy interaction log event sequences, containing irrelevant data, that need to be addressed.
+        \begin{enumerate}[label=T\arabic*., left=0cm, noitemsep, topsep=0pt, parsep=0pt]
+        % T 1
+        \item \textit{Filtering/Smoothing operation.} 
+        The system should provide the ability to allow users to filter noise to hide excessive and potentially uninteresting information for a more relevant and concise visual representation.
+        In addition, users should have control over the degree of noise reduction.
+        \end{enumerate}
+        
+\noindent 
+\textbf{R2 - Multi-faceted exploration.} 
+To investigate the interaction log thoroughly, both interactions at the interface level (e.g., infopanels) and the contextual attribute level need to be incorporated into the analysis. 
+This allows understanding of both \textit{how} a participant has used the interface and \textit{what} information they have accessed.    
+Multi-level visual representation is essential to participants' exploration strategies.     
+        \begin{enumerate}[label=T\arabic*., start=2, left=0cm, noitemsep, topsep=0pt, parsep=0pt]
+        % T 2
+        \item \textit{Multi-level visualization.} 
+        The visualization should support displaying both the interface interactions and the contextual attribute changes, both separately and simultaneously, based on the users' needs. 
+        In addition, users should be able to add or remove levels of interest, based on the analytical goal.
+        % T 3
+        \item \textit{Overview and detail.} 
+        Users should have a multi-level overview of the entire log sequence.
+        In addition, details of specific time windows, such as individual tasks, and respective details should be accessible on demand.
+        \end{enumerate}
+        
+\noindent
+\textbf{R3 - Visual comparison.} 
+One interesting aspect was to extract exploration/task-solving strategies by identifying similarities in the interaction log sequences. 
+To perform this analysis, the system should support and facilitate sequence comparison, such as identifying similarities/dissimilarities between (groups of) individual participants from the event sequences~\cite{Linden23Survey}.
+    \begin{enumerate}[label=T\arabic*., start=4, left=0cm, noitemsep, topsep=0pt, parsep=0pt]
+    % T 4
+    \item \textit{Multi-granular comparison.} 
+    The system should support the visualization and comparison of different interaction log sequences (i.e., each obtained from a different participant). 
+    In addition, the visualization should focus on a specific task instead of the entire experiment, since the patterns can be related to the hierarchy of cognitive learning processes (i.e., it is task-specific).
+    % T 5
+    \item \textit{Multi-level comparison.} 
+    Similar to multi-level visualization for individual participants, visual comparison should include both the changes at the interaction level and the attribute change level.
+    \end{enumerate}
+    
+\noindent 
+\textbf{R4 - Algorithmic support for identifying similar users.} 
+Besides visual comparison of the interaction log sequences of the participants, it is also pragmatic to investigate similar participants using similarity measures to, for example, contextualize and understand how a similarity/dissimilarity relates to the larger context~\cite{Gleicher18Considerations}. 
+This translates into identifying participants with similar/dissimilar task-solving strategies. 
+Building upon this, additional enhancements can be implemented.
+        \begin{enumerate}[label=T\arabic*., start=6, left=0cm, noitemsep, topsep=0pt, parsep=0pt]
+        % T 6
+        \item \textit{Similarity assessment.} 
+        The system should provide algorithmic support to compute the similarity between interaction log sequences.
+        % T 7
+        \item \textit{Similarity visualizations.} 
+        The system should support the visual exploration of the computed similarity and provide visual cues to aid domain experts in making sense of the results.
+        \end{enumerate}
+
+\noindent 
+\textbf{R5 - Human in the analysis loop.} 
+The system should seamlessly bridge the outlined requirements and provide interactive support during users' workflows to reduce cognitive load, as well as enable users to progressively comprehend more complex relationships and patterns, fostering a more effective analytical workflow. 
+        \begin{enumerate}[label=T\arabic*., start=8, left=0cm, noitemsep, topsep=0pt, parsep=0pt]
+        % T 8
+        \item \textit{Coordinated views and interactivity.} 
+        The visualization design should enable coordinated views and provide rich interactions to aid users in inspecting and comparing visual representations.
+        \end{enumerate}
+
+Based on these system design tasks and requirements, we implemented our approach in VISID, as presented in~\cref{sec:system_description}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% System Overview %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{System Overview and Description}
+\label{sec:system_description}
+
+VISID consists of two main parts: an \textsc{Individual View} and a \textsc{Comparison View}.
+Both views incorporate a dedicated control panel alongside several visualizations, where users can, for example, adjust and customize visual representations, select data points of interest, and perform filter operations to facilitate exploration of the data within each view.
+An introductory demo video is available in the provided supplementary material.
+
+All of the aforementioned system design requirements and tasks are supported within both these views, except for \textbf{T6} and \textbf{T7}, which are specifically addressed by the \textsc{Comparison View}.
+A more detailed description follows in~\cref{subsec:va_interaction}.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Data Preparation}
+\label{subsec:data_preprocessing}
+
+Each event in the interaction log from SiN is stored as an entry with a timestamp in JSON format.
+To mitigate the impact of irrelevant data and noise, we performed an initial preprocessing step.
+Only the log events pertinent to our current analysis (see~\cref{sec:SiN}) are extracted and then converted to CSV format.
+All interactions are logged at a millisecond resolution.
+However, for our analysis, such granular timestamps are redundant.
+We thus normalized all timestamps to a second-based scale.
+As a secondary preprocessing step to further clean the data, unnecessary repetition introduced during logging is removed.
+Specifically, whenever an attribute undergoes modification within SiN, filter update events (e.g. user changes \textit{Gender} in an infopanel) are created for all statistical categories (i.e., \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}).
+We thus remove the unchanged attribute events from the log.
+A further refinement addresses the \textit{Year} attribute change in the SiN interface. This attribute is adjusted using a slider and generates a continuous stream of filter update events while being interacted with.
+Finally, since the SiN interface does not log when a task has started or ended, each task timestamp needs to be aligned with the start time recorded separately by the experiment leader during the data collection. 
+Following this, the preprocessed log data are imported into VISID, where the following three types of sequences can be visualized: 
+\begin{enumerate}[noitemsep, topsep=0pt, parsep=0pt]
+    \item \textit{Interface event sequences} relate to the creation/deletion of interface elements, e.g., infopanels.
+    The sequences are composed of interval events corresponding to infopanel lifetime (i.e. from creation to deletion) and the lifetime of a statistics category of focus.
+    Both these interval event types can overlap in the event sequences.  
+    These sequences are on the lowest granular level.
+    
+    \item \textit{Interaction event sequences} are composed of interval events denoting when infopanels are interacted with in SiN and cannot overlap. 
+    These sequences are on the middle granular level.
+    
+    \item \textit{Attribute change event sequences} comprise instantaneous events encapsulating the attribute values set in the infopanels. 
+    Every time an attribute changes, a new event is displayed. 
+    While the events themselves are instantaneous, the attribute values are set until the next change is applied.
+    These sequences are on the highest granular level, encompassing contextual details.
+\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Individual View}
+
+We designed the \textsc{Individual View}, as illustrated in~\cref{fig:teaser}.1, to allow users to conduct an in-depth and comprehensive investigation of an individual participant (\textbf{T2}, \textbf{T3}). 
+This view comprises two components, an \textit{Individual Control Panel} and an \textit{Individual Sequence Visualization}. 
+The latter is configured by the former.
+We follow Shneiderman's Visual Information-Seeking Mantra \cite{Shneiderman1996The} during the design process to incorporate \textit{overview} and \textit{details-on-demand}.
+
+The \textit{Individual Control Panel} provides users the ability to change participants of interest and switch between viewing the entire experiment (\textit{overview}) or a specific task, should it be deemed appropriate (\textit{details-on-demand}) (\textbf{T3}). 
+By default, the interaction event sequence, i.e. interactions with elements such as infopanels within the SiN interface, is visualized. 
+At this granularity level, users can choose to focus on and analyze how a particular participant has interacted with the application chronologically, as illustrated in the \textit{Interaction View} (\cref{fig:teaser}.1), to e.g., investigate if the participant interacted with one infopanel before moving on to another.
+Alternatively, users can opt to explore how a participant has interacted with the application on a higher level, i.e., interactions on the interface level.
+At a lower granularity level, users can investigate the underlying exploration strategies and reveal additional information regarding corresponding cognitive processes, e.g., if a participant used a single or multiple infopanels to solve a specific task, as illustrated in the \textit{Holistic View} (\cref{fig:teaser}.2) (\textbf{T2}).
+
+Additionally, attribute change event sequences, i.e., interactions with attributes within the infopanels, can be added to the visualization.
+This additional level of detail shows how a participant has explored different attributes and facilitates a comprehensive understanding of a participant's decision-making process (\textbf{T2}). 
+Users retain the flexibility to include or exclude attribute change sequences on demand (\textbf{T3}).
+Both the interaction and attribute change event sequences are located within the same visualization space.
+
+A background color is applied to the individual view to reflect the active statistical categories (i.e., \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}) throughout participants' exploration. The background color is drawn semi-transparent allowing for the simultaneous presence of multiple categories to be seen through the overlaps and blending in the color (\cref{fig:teaser}).  
+Moreover, since statistical categories in the SiN exhibit are coupled to the underlying map and the infopanels, the background color provides additional context regarding the number and type of category the active infopanels belong to.
+
+Apart from the preprocessing applied before importing the log data, users have the flexibility to further simplify the participants' interaction logs to remove noise inside VISID. 
+This user-driven refinement can be useful in cases where the logs display noise in terms of interface events (i.e., infopanels) that appear and disappear immediately (or below a certain threshold~\cite{Miller1968Response}), often due to user error. 
+This is achieved by integrating a filtering function (\textbf{T1}) enabling the exclusion of such events that are active for less than a user-defined duration threshold.
+Users can adjust this threshold or deactivate the functionality entirely according to their specific needs (\textbf{T8}).
+
+During the design process, we explored the potential benefit of including a filter based on the number of interactions within infopanels. 
+However, our pilot study revealed instances where participants opened infopanels during their exploration without any explicit interaction (e.g., not changing attribute values), but rather observed the default values.
+Consequently, we decided to exclude this feature.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Comparison View}
+
+The \textsc{Comparison View} facilitates the sorting of participants based on their interaction sequence similarity and enables comparative analysis. 
+We utilize the Dynamic Time Warping (DTW) algorithm~\cite{Berndt94Using} to calculate similarity scores between participants.
+To investigate a particular participant in further detail, users proceed to the \textsc{Individual View} (\textbf{T8}).
+The \textsc{Comparison View} comprises three components, a \textit{Comparison Control Panel}, a \textit{Sequence Comparison Visualization}, and a \textit{Similarity Plot}. 
+Here, we aim to implement the sense-making model mentioned in Brehmer's typology~\cite{Brehmer13Multi}, which consists of information lookup, locating, browsing, and exploration (\textbf{T8}). 
+In the \textit{Comparison Control Panel}, users select and visualize interaction event sequences for a specific task of interest (\textbf{T4}).
+Consequently, only user interactions relevant to the selected task are displayed in the \textit{Sequence Comparison Visualization}. 
+Finally, users can choose to visualize the similarity score using a heatmap representation or a clustergram, which is a combination of heatmap and dendrogram, in the \textit{Similarity Plot}.
+
+To avoid visual clutter, a juxtaposed layout is utilized~\cite{Gleicher18Considerations}.
+By default, both the interaction event sequences (interaction level) and the attribute change event sequences (attribute change level) are visualized (\textbf{T5}).
+Here, in contrast to the \textsc{Individual View} (\cref{fig:teaser}.1), it would be space-inefficient to visualize the attribute sequences by adding additional juxtaposed visualizations. 
+After several design iterations, we arrived at a nested juxtaposed layout, where we combine attribute sequences in a juxtaposed layout and superpose them onto the interaction event sequence visualization. 
+Users can show/hide attribute changes depending on the analysis goal (\textbf{T8}).
+The interaction events color scheme can be set based on two options, a selected statistical category or municipality/county, and if so desired, a solid color to avoid information overload.
+Similar to the \textsc{Individual View}, there is a filter function to allow the removal of interaction events based on duration (\textbf{T1}).
+We further improved usability by implementing a function to focus on an interface event (i.e., an infopanel). 
+A specific event can be selected and focused on by reducing the opacity of all other events.
+
+Additional settings in the \textit{Comparison Control Panel} include a baseline participant selection.
+Upon selecting a participant of interest, their sequence is compared and aligned with all other participants. 
+Subsequently, the \textit{Sequence Comparison Visualization} is sorted decreasingly by the similarity score (\textbf{T6}).
+Thus, users can swiftly determine the participants most similar and dissimilar to the selected individual (\textbf{T7}).
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsubsection{Similarity Plot}
+\label{subsubsec:similarity_plot}
+
+Within the \textit{Sequence Comparison Visualization}, similarity score bars are positioned adjacent to the sequences to depict the magnitude and relativity between the selected baseline participant and the rest (\textbf{T7}). 
+Delta values representing the difference in similarity scores between each participant and the baseline participant are also displayed (\textbf{T6}), as illustrated in~\cref{fig:teaser}.4.
+In this work, the similarity scores between the participants are calculated based on their attribute-change interaction event, omitting the set contextual values, i.e., the specific attribute values that participants explored.
+The focus of our work lies in the strategies users employed during their task-solving exploration, and not in evaluating the accuracy or correctness of the conclusions reached.
+
+Dynamic Time Warping (DTW) is utilized to find an optimal alignment and compute similarity scores.
+This algorithm is designed to process two continuous event sequences~\cite{Sakoe78Dynamic}, but the sequences derived from interaction event sequences are inherently discrete. 
+Therefore, each interaction is extended to span the entire duration until the subsequent interaction occurs, effectively transforming the discrete sequence into a continuous representation suitable for DTW analysis.
+The resulting sequences are then inputted into the DTW algorithm for alignment.
+
+This algorithm outputs a cost value associated with aligning one sequence to another, it serves as an indicator of dissimilarity.
+A higher cost suggests greater dissimilarity between the two sequences.
+Subsequently, we applied this algorithm across all participant pairs, building up a pairwise dissimilarity matrix.
+To facilitate intuitive interpretation, we normalize these dissimilarity scores to a range between $0$ and $1$, where $0$ indicates no cost (i.e., completely similar) and $1$ indicates the highest cost (i.e., completely dissimilar).
+To reflect similarity, we invert the normalized dissimilarity, where a score of $0$ now denotes completely similar, and a score of 1 denotes completely dissimilar (\textbf{T6}).
+
+Finally, VISID provides two instances of \textit{Similarity Plot} to explore participants' similarities. 
+By default, a two-dimensional matrix, depicting pairwise similarity scores, is computed and visualized in a heatmap format, where each dimension is the participants (\textbf{T7}).
+Alternatively, users can switch to a clustergram view visualized through both a heatmap and dendrogram~\cite{Matthias02Clustergram} (\textbf{T7}), as illustrated in~\cref{fig:cluster_overview}. To create this view, hierarchical clustering with Ward's linkage~\cite{Joe63Hierarchical} is applied to the interaction sequences using the DTW-based dissimilarity matrix created. 
+These facilitate a comprehensive overview of similar participants that can be explored further by adjusting the baseline participant to investigate the corresponding ranked sequences (\textbf{T8}).
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[
+    width=.9\linewidth,
+    alt={
+    A view of five clustergrams corresponding to Tasks 1 to 5. 
+    It displays hierarchical clusters and finds groups of similar participants.
+    The color scale indicates the similarity score between each participant pair, ranging from 0, which is the most dissimilar, to 1, which is the most similar.}
+    ]{clusters_overview}
+     \caption{An overview of five clustergrams corresponding to Tasks $1$ to $5$, displaying hierarchical clusters and finding groups of similar participants.
+     The color scale indicates the similarity score between each participant pair, ranging from $0$ (most dissimilar) to $1$ (most similar).}
+     \label{fig:cluster_overview}
+\end{figure*}
+
+\subsection{Interaction with VISID}
+\label{subsec:va_interaction}
+
+The \textsc{Individual View} facilitates the investigation of an individual participant's interaction log with varying levels of detail and degrees of granularity. 
+Users can examine changes both at the interaction level (e.g., on the infopanels) and the attribute change level (\textbf{T2}), and explore an entire individual's log or focus on a specific time window representing a task of interest (\textbf{T3}). 
+The \textsc{Comparison View} presents a customizable comprehensive overview, with varying levels of detail, of all participants of a specific task for comparative analysis (\textbf{T4}).
+Together the two views facilitate relevant visualization tasks relating to search (browse, explore, lookup, and locate)~\cite{Brehmer13Multi}. To exemplify the interconnectivity of each component and how they can facilitate visual exploration and analysis (\textbf{T8}), we present one possible typical workflow using Task $3$ (detailed in~\cref{subsec:task_3}) of the user study.
+
+Users initiate their analysis by inspecting all participants in the \textit{Comparison view} for a chosen task. 
+The \textit{Similarity Plot} can be examined (\cref{fig:cluster_overview}) for an initial assessment of the similarity between the participants.
+Through the \textit{Heatmap View}, users can review the computed similarity between all individuals. Alternatively, users can inspect the \textit{Cluster View} (\cref{fig:teaser}.5) to get indications of clusters of similar participants.
+If we consider Task $3$ of the user study, inspecting the clustergram view in~\cref{fig:cluster_overview}.3, two clusters emerge along the diagonal and two outliers (P$5$ and P$2$) are immediately visible.
+
+Subsequently, users can make informed decisions and select a participant of interest as a baseline.
+Following this selection, all other participants will be sorted based on their similarity scores relative to the baseline participant. 
+For Task $3$, with P$7$ set as the baseline participant, similarity in the interaction and attribute change event sequences can be initially inspected, as illustrated in~\cref{fig:teaser}.3. 
+We notice that the top most similar participants successively open infopanels corresponding to the inquired municipalities (seen in the colored bars), and for each infopanel the \textit{Gender} attribute is adjusted (seen in the attribute line).
+
+Before delving deeper into the analysis, users can examine the \textsc{Individual View} of the selected baseline participant to observe how the task was executed.
+This step is crucial for identifying any particular patterns, i.e., specific exploration strategies.
+For Task $3$, the \textit{holistic view} (\cref{fig:teaser}.2) shows the interface event sequence of P$7$. 
+We can see that P$7$ successively opens $6$ infopanels (seen as the green bars) of the \textit{Income} category (also seen in green background color), which are then kept open during the remaining duration of the task. 
+The \textit{Interaction view} (\cref{fig:teaser}.1) highlights which infopanel and when the participant has actively interacted with (cascading green bars), as well as the changes made in the \textit{Gender} attributes for each infopanel (attribute lines).
+
+Following this, utilizing the ranked sequence visualizations in the \textsc{Comparison View}, in conjunction with domain knowledge about the task and hypothesized exploration strategies, sorted participants can be successively explored in the \textsc{Individual View} to establish a threshold for dissimilarity (\cref{fig:task_3_individuals}).
+This process is iterative, and repeated until the actual dissimilarity threshold is identified, i.e., the participant clearly diverges from employing the same exploration strategy.
+After establishing a dissimilarity threshold, users can assess the prevalence of the identified exploration strategy within the participant group.
+For example, if the number of participants that employed the same, or sufficiently similar strategy, is significantly large, and if the identified strategy aligns with different levels of the cognitive hierarchy.
+Moreover, identified outliers (P$5$ and P$2$ for Task $3$ for example) can be investigated in the \textit{Individual View} to analyze the specific actions and patterns distinguishing them from the rest.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Case Study %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case Study}
+\label{sec:case}
+
+We conducted a second data collection with a new diverse group of participants. We analyze the data with our coauthor VLC domain experts to test the applicability and usefulness of VISID.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+\subsection{Study Design and Task Protocol}
+
+We used five tasks of increasing complexity, described in~\cref{subsec:tasks_pilot} and listed in~\cref{tab:blooms}. 
+The tasks were intended to link cognitive learning processes and participants' interaction strategies.
+The study was not designed as a typical HCI study, hence our focus was not on unprompted interaction with the exhibit or on usability or accuracy, as mentioned in~\cref{subsec:tasks_pilot}.
+Rather we aimed to capture strategies used by participants when involved in carefully designed tasks stimulating specific cognitive learning processes.
+We predicted that complex tasks would result in generating more strategies than easier ones. 
+Moreover, the experiment contributes to knowledge about how interaction with the SiN interface supports different levels of human cognitive processing. 
+We recruited $14$ participants for the main study (nine females and five males aged between $30-59$). 
+None of the participants had visualization experience and only one had interacted with the SiN exhibit before. 
+Each participant was compensated with a ticket to an immersive dome theater show (value of approximately \$10 USD). 
+
+During the experiment, each participant first viewed a two-minute introductory video explaining the functionalities of the SiN exhibit. 
+They were then given a few minutes to freely interact with the SiN interface. 
+They were able to pose any questions during this period, but not during the experiment. 
+Following this, the experiment began and participants were presented with one task at a time. 
+When participants felt the task was solved, they asked the experiment leader to progress to the next task, who took note of each respective task commencement time.
+Similar to existing studies~\cite{Blascheck16VA2, Guo16Case}, we included screen video capture instead of explicitly asking participants to think aloud. 
+The video material could be used to provide qualitative explanations for the analysis of interaction logs, without disrupting participants' performance.
+
+The participants' interaction logs were preprocessed (\cref{subsec:data_preprocessing}) and imported into VISID for visualization and analysis. 
+A data analysis workshop was held within the team to explore the collected logs for emerging exploration strategies. 
+During the workshop, the VIS experts navigated VISID while the VLC experts guided the exploration. 
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Discovered Primary Exploration Strategies}
+\label{subsec:discovered_strategies}
+
+Analysis of the log data revealed various potential strategies that participants employed when solving the tasks. We describe the discovery of primary strategies for each separate task, as shown in~\cref{tab:blooms}.
+
+
+% Task 1
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection*{Task $1$: Basic Retrieval Strategy}
+
+Task $1$ had the intention of being least demanding and designed to activate lower-level cognitive processes, such as identifying elements. 
+Herein, the first task also served as a type of ``warm-up''. 
+Analysis of participants' data for Task $1$ revealed that most used a similar basic strategy (\cref{fig:cluster_overview}.1). 
+The strategy manifested as participants popping up one infopanel for the selected municipality, and retrieving the displayed information. 
+We perceived this strategy as aligning with the ``Identifying'' component of the lowest level of Bloom's taxonomy (\cref{tab:blooms}).
+
+We also discovered that a few participants did not recognize the need to first activate the \textit{Education} category before activating an infopanel. 
+These outliers (P$1$ and P$2$) are apparent in the \textit{Cluster View} (\cref{fig:cluster_overview}.1).
+This may indicate that not all expected actions with SiN are necessarily intuitive. 
+Although it was the simplest task, we still noted some variation in the way two participants approached it, likely induced by their unfamiliarity and first-use experiences with SiN.
+
+
+% Task 2
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection*{Task $2$: Within and Between Infopanel Comparison Strategy}
+
+When it came to Task $2$, participants had to identify and make a simple comparison between two elements. 
+While the intention of the task was to remain at relatively low levels of cognitive processing, the participants were found to solve the task in two primary ways, alluded to by the emergent clustering in~\cref{fig:cluster_overview}.2. 
+In one way, participants activated two infopanels to have both attributes, concerning the average income for each gender, displayed simultaneously, an example is P$8$.
+Other participants switched between two attributes within the same infopanel, an example is P$4$, as illustrated in~\cref{fig:task_2_strategies}.
+The majority of participants adopted the second strategy to perform the task. 
+Executing this strategy makes sense from a human information-processing perspective since when comparing two elements, human processing tends to split attention between the elements~\cite{Chandler92split}. Apart from these two primary strategies, we identified two substrategies that differed in action sequence and were shown to be prevalent in Task $3$.
+
+It is intriguing to note that although participants had a two-infopanel option for solving the task, which would have reduced cognitive load (by not having to retain two chunks of information in working memory), most participants preferred the one-infopanel option. 
+Our observations indicate that performing Task $2$ activates cognitive processes related to comparing, which is a component of Bloom's ``Understand'' category.
+
+\begin{figure}[tbh]
+    \centering
+    \includegraphics[
+    width=.9\columnwidth,
+    alt={
+    A screenshot of the Individual Views of two participants.
+    It shows the strategies of P8 and P4 for Task 2. 
+    P8 uses two infopanels, respectively targeting female and male income.
+    P4 uses a single infopanel, toggling between genders and comparing income. 
+    Infopanels are set to the municipality Halmstad, and the year 2017 for both cases.
+    }
+    ]{task_2_ind}
+    \caption{\textsc{Individual View} showing the strategies of P$8$ and P$4$ for Task $2$. 
+    P$8$ uses two infopanels, respectively targeting female and male income.
+    P$4$ uses a single infopanel, toggling between genders and comparing income. 
+    Infopanels are set to ``Halmstad'' and year $2017$ for both cases.
+    }
+   \label{fig:task_2_strategies}
+\end{figure}
+
+
+% Task 3
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection*{Task $3$: Cascading Strategy}
+\label{subsec:task_3}
+
+During Task $3$, participants had to compare an even further number of elements. 
+We wanted to expose additional strategies for element comparison, by incorporating multiple comparisons.
+We purposely designed Task $3$ to engage six municipalities to remain within the bounds of human working memory capacity (i.e., three to seven simultaneous elements~\cite{Alan92Working}).
+The most common strategy was observed as participants popping up multiple infopanels corresponding to the municipalities in a ``cascading'' pattern, as illustrated by the successive colored interaction events in the participants' sequences in~\cref{fig:teaser}.3 and shown as the larger cluster in~\cref{fig:cluster_overview}.3. This strategy is essentially a more amplified substrategy from Task $2$ characterized by first opening all infopanels and then setting desired attributes. On the other hand, some other participants preferred to adjust attributes for each municipality immediately after popping up the corresponding infopanel (top-right cluster in~\cref{fig:cluster_overview}.3). 
+The ``cascading'' effect becomes even more evident when inspecting the interaction and attribute change sequences of participants in the \textsc{Individual View}, as illustrated in~\cref{fig:task_3_individuals}.
+
+Interestingly, a possible strategy that does not require all infopanels to be popped up was never implemented, even though it would have reduced cognitive load, i.e., successively comparing two infopanels at a time and keeping the one with higher income. 
+Overall, the exposed strategy is in line with comparing processes but is manifested in a more complex way, since the participant has to compare several attributes and draw a sequence of conclusions to make a general inference. 
+Hence, this revealed strategy aligns more with the ``Apply'' dimension of Bloom's taxonomy, i.e., using comparison to reach a general verdict.
+
+\begin{figure}
+    \centering
+    \includegraphics[
+    width=.9\columnwidth,
+    alt={
+    A screenshot of the Individual Views of three participants.
+    It shows participants 7, 8, and 9, employing the cascading strategy for Task 3.
+    The attribute change sequence shows how they set gender. 
+    The interaction sequence shows the interaction with the different municipalities through the cascading corresponding infopanels and their colors, and the background color reflects the statistical categories of the active infopanels.    
+    }]{task_3_ind}
+     \caption{\textsc{Individual View}s showing participants $7$, $8$, and $9$, employing the ``cascading'' strategy for Task $3$.
+     The attribute change sequence shows how they set \textit{Gender}. The interaction sequence shows the interaction with the different \textit{Municipalities} through the cascading corresponding infopanels and their colors, and the background color reflects the statistical categories of the active infopanels. 
+     }
+     \label{fig:task_3_individuals}
+\end{figure}
+
+
+% Task 4
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection*{Task $4$: Nested-Loop Strategy}
+
+Task $4$ was designed with the intention for participants to engage in higher-level cognitive processes than simple comparisons, such as differentiating between two non-explicit elements. 
+In this regard, the task required cognitive operations (e.g., arithmetical calculations) that were not visually provided by SiN. 
+A few strategies were discovered for solving this task.
+The primary one was to keep one attribute fixed while changing the other, for example, for each \textit{Gender}, varying the \textit{Year}; or vice-versa.
+It is interesting that while six participants chose to interact with one infopanel to solve the task, having more than one infopanel would have been less demanding on working memory. 
+One possible explanation for this is that participants preferred to rely on working memory processing rather than offloading this processing demand onto the visual affordances of SiN.
+To counteract such approaches in engaging with SiN, the result infers that novice participants could benefit from structured guidance on how to use SiN.
+Another discovered strategy was the use of multiple infopanels to reduce the switching between attributes and respective values. 
+This strategy served as an exact example of how cognitive load can be reduced by using the affordances of the exhibit.
+This is identified by inspecting the visible cluster in the center of~\cref{fig:cluster_overview}.4.
+A further investigation in the \textsc{Individual View} reveals that these participants (P$8$, P$13$, and P$14$) used a similar strategy, i.e., having four infopanels in parallel, for each combination of \textit{Year} and \textit{Gender}.
+An example of such a strategy is illustrated in~\cref{fig:task_4_ind}, where participant $8$ first opens four infopanels with default values and then revisits them to adjust the attribute values.
+
+In summary, analysis with VISID has revealed what we term a primary ``nested-loop'' strategy: participants first organize the data in a suitable order to perform a mental calculation and then integrate it when mentally calculating the salary gap.
+Collectively, we infer that these cognitive processes align with Bloom's ``Analyze'' category.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[
+    width=.9\columnwidth,
+    alt={
+    A screenshot of the Individual View of participant P8 employing one of the nested-loop strategies for Task 4. 
+    Four infopanels are used for each combination of year and gender, that is, female income in 2017, female income in 2005, male income in 2017, and male income in 2005.
+    }]{task_4_ind}
+    \caption{\textsc{Individual View} showing participant P$8$, employing one of the ``nested-loop'' strategies for Task $4$. 
+    Four infopanels are used for each combination of \textit{Year} and \textit{Gender}, i.e., female income in 2017, female income in 2005, male income in 2017, and male income in 2005.
+    }
+    \label{fig:task_4_ind}
+\end{figure}
+
+
+% Task 5
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection*{Task $5$: Explorative / Confirmative Strategy}
+
+In the final task, we intended for participants to engage in higher-level cognitive processes that required testing and hypothesizing. 
+This task was the most open-ended and explorative, where we aspired to reveal multiple strategies for executing the task. 
+
+Consequently, Task $5$ delivered the most variation in strategies. As illustrated in~\cref{fig:cluster_overview}.5, we observe small clusters, often consisting of pairs or few participants, partially due to the relatively small dataset size.
+By selecting participants from these smaller groupings as a baseline in the \textsc{Comparison View}, we retrieve the most similar participants and proceed to further inspect and verify their similarity in the \textsc{Individual View}.
+One of the strategies identified in this manner is adopted by P$7$ and P$8$, as illustrated in~\cref{fig:task_5_comp}.
+We see that both participants predominantly solve the task by utilizing two infopanels, except for P$8$ who mistakenly activates an irrelevant infopanel and promptly closes it, as illustrated in~\cref{fig:task_5_individual} (i.e., noted by the hovered infopanel).
+Their exploration involved sequentially examining statistical categories (reflected in the background color), in this case, starting with \textit{Education} (yellow) and then followed by \textit{Age} (magenta), as illustrated in~\cref{fig:task_5_comp} and~\cref{fig:task_5_individual}.
+Throughout the exploration of each category, they first set the \textit{Gender} attribute constant, while iterating through years between $2005$ and $2007$ (\cref{fig:task_5_individual}).
+This observed strategy conforms with the following template:
+\begin{verbatim}
+for category in [Education, Age]
+    for gender in [male, female]
+        for year in [2017, 2015]
+             compare the category's data
+\end{verbatim}
+
+In summary, we discovered that participants mostly examined two categories: \textit{Education} and \textit{Age}.
+They fundamentally employed the ``nested-loop'' strategy, switching between attributes (\textit{Year} or \textit{Gender}). 
+We raise the question whether this could suggest the existence of an exploratory strategy where participants tested multiple possibilities. 
+On the other hand, we also postulate the existence of a confirmatory strategy where participants have hypotheses in mind and use SiN to support them. 
+In this vein, we wonder what the implications would be of adding further categories to SiN, and whether it will further satisfy participants' curiosity.
+The emergence of those strategies indicates that when performing the task, participants apply the cognitive components of testing assumptions and generating hypotheses, which align with Bloom's dimensions of "Create" and ``Evaluate'', respectively.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[
+    width=.9\columnwidth,
+    alt={
+    A screenshot of the Comparison View, sorted by similarity score with P7 as the baseline participant, who iterates over two statistical categories, Education, in yellow, and Age, in pink. 
+    For each gender, they iterate over the years, 2017 and 2015.
+    The background is colored by respective statistical categories, with attributes Year and Gender selected.
+    }]{task_5_comp}
+    \caption{\textsc{Comparison View} sorted by similarity score with P$7$ as the baseline participant, who iterates over two statistical categories, \textit{Education} (yellow) and \textit{Age} (pink), and for each gender, iterates over the years, $2017$ and $2015$.
+    The background is colored by respective statistical categories, with attributes \textit{Year} and \textit{Gender} selected.
+    }
+    \label{fig:task_5_comp}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[
+    width=.9\columnwidth,
+    alt={
+    A screenshot of the Individual Views of two participants.
+    It shows participants 7 and 8, confirming the strategies seen in figure 7, apart from an irrelevant infopanel opened by P8 accidentally, as shown in the hover.
+    The attribute Year and Gender are displayed.
+    }]{task_5_ind}
+    \caption{\textsc{Individual View} showing participants $7$ and $8$, confirming the strategies seen in~\cref{fig:task_5_comp} (apart from an irrelevant infopanel opened by P$8$ accidentally).
+    The attribute \textit{Year} and \textit{Gender} are selected.
+    }
+    \label{fig:task_5_individual}
+\end{figure}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Discussion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+
+\noindent 
+\textbf{Lessons Learned.} 
+Bloom's taxonomy, developed to help identify cognitive learning processes, proved to be a meaningful framework to identify users' interaction patterns with the SiN system,  visualized through VISID. 
+The results provide a unique point of departure for how theoretical cognitive dimensions of Bloom's taxonomy~\cite{Anderson2001Taxonomy} could be practically validated~\cite{Shao24Data} and even visualized by demonstrating gradually more complex and diverse users' interaction patterns. 
+We could observe this with VISID as gradually more complex cognitive processes were employed to complete the tasks. 
+VISID allowed us to observe and compare aspects of participants' exploration strategies, which would otherwise remain unrevealed. 
+In this way, the work represents a novel approach in the VIS community that uses a VA tool to help associate cognitive learning processes with user strategies. 
+Additionally, and while not the aim of the current work, revealing interaction patterns through VISID could be useful for future SiN design iterations (e.g., pop-up control is important for scaffolding exploration), as well as future exploranation system designers (e.g., potential transitions between visual displays in a multi-layered interactive visualization should be intuitively interlinked).
+Our approach leads to encouraging initial findings and demonstrates promising results. 
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\noindent 
+\textbf{Generalizability.} 
+While VISID was designed, developed, and evaluated using interaction logs from the SiN exhibit, the approach is applicable to logs from other educational exhibits.
+As discussed in~\cref{sec:background_motivation}, SiN is one of the many exploranative exhibits available in public centers. 
+Given that exploranation is an emerging paradigm, other such exhibits share similar properties  (e.g., on-demand explanations, infopanels, constrained interactions, multiple categories, and real data presentation), making their interactions comparable to those in our study.
+For example, Inside Explorer~\cite{Ynnerman16Interactive} categorizes body layers (e.g., skin, muscles, bones), and the clickable infopanels reveal explanations of different body parts.
+Similarly, the Microcosmos exhibit~\cite{Host18Biological} presents (sub)microscopic biological structures and processes, through infopanels available as image ``cards'' in conjunction with thematic categories (proteins, viruses, cells, molecules, genes, processes of life, and diseases). 
+In the globe visualization of climate change~\cite{Besanccon22Exploring}, the infopanel can be read and interacted with on a touchscreen beside the globe, while the categories are the different datasets that can be rendered onto the globe. 
+Conversational-based exhibits~\cite{Jia24VOICE}, categorize infopanels as responses to user queries, with categories mapped to preset system views.
+VISID can provide insights into public use of these interactive exhibits, we therefore expect its general applicability beyond SiN alone.
+Another interesting direction involves investigating the exploration strategies of visitors engaged in casual leisure activities~\cite{Morse21Casual}. Although the system will face scalability challenges with increased data, we believe our approach provides a basis for subsequent advancements, as discussed in~\cref{sec:limitation}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Discussion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Limitations and Future Work}
+\label{sec:limitation}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\noindent 
+\textbf{Scalability.} 
+An important consideration for VISID is its scalability in handling event sequences that grow in size and complexity.
+In the \textsc{Individual View}, the increase of interactions and attributes makes visual representations challenging to interpret due to limited visual cues like colors, shapes, and screen space.
+This is mitigated by employing \textit{overview} and \textit{details-on-demand}~\cite{Shneiderman1996The}.
+The \textsc{Comparison View} faces similar issues and information overload as the number of logs increases. 
+Currently, we address this by incorporating a sorting feature that arranges participants based on their similarity scores. 
+Future work includes employing an option to display only a subset of the most similar and dissimilar participants.
+Moreover, the \textit{Cluster View} additionally might suffer from the limited available screen space, though the current participant number is reasonably small for revealing clusters visually.
+We plan to explore alternative approaches, for example, bitmap representations without dendrograms, 2D projection in scatter plots, or collapsing detected clusters and displaying only the cluster representative to manage the increased data density.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\noindent 
+\textbf{In-the-Wild Data.} 
+Despite VISID facilitating the identification of similar/dissimilar users, the limited participant pool (N=$14$) may preclude statistically significant results.
+We believe that the strategies delineated in this work will also be identifiable in real-world data.
+As such, future work will first focus on collecting additional data to expand the user base, allowing statistically significant clustering.
+Subsequently, we aim to collect data in an unguided setting, allowing participants to freely explore the visualization application and casual leisure activities~\cite{Morse21Casual}.
+This will capture a broader range of user interactions and potentially reveal additional user profiles and behaviors.
+Additionally, a thorough evaluation with external domain experts can be done in conjunction.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\noindent 
+\textbf{Similarity Measure.} 
+Concerning our algorithmic support, the similarity score is computed using Dynamic Time Warping (DTW).
+Noise in the log, such as random or unexpected interactions, can reduce alignment accuracy by matching noise instead of intended sequences~\cite{Raket14Nonlinear}. 
+We mitigate this by removing noise during preprocessing, allowing a filter operation, and extracting sequences at the interaction level before computing DTW, as detailed in~\cref{subsubsec:similarity_plot}. 
+Further investigation into the measure, such as incorporating additional contextual details, e.g., the attribute values, can reveal further nuances and improve the results. 
+Users with similar strategies may reach different conclusions due to attribute value variations, which currently cannot be identified without a finer level of detail.
+These aspects will be explored in future work.
+
+Another direction for future research involves further investigating clustering techniques and user profiling.
+As described in~\cref{subsec:event_seq_comp}, the results from the DTW algorithm are used for ranking participants. 
+Hierarchical clustering is currently utilized for producing a cluster view, giving indications of groups, and providing cues for the selection of candidate baseline participants. 
+More refined similarity measures and further experimentation with clustering algorithms can improve the identification of strategies and user profiles. 
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\noindent 
+\textbf{Additional Data Sources.} Screen capture was used to confirm interactions from the log data. 
+While the SiN log captures some user interactions, it does not record dynamic actions, e.g., infopanel dragging and repositioning. 
+Thus, while we can track the number of open infopanels, the participant's focus remains uncertain, requiring some inference about exploration strategies. 
+Future experiments can consider additional data sources, e.g., eye-tracking and video recording~\cite{Blascheck16VA2, Liebers23VisCoMET, Blascheck19Exploration}, to strengthen our analysis.
+Finally, VISID can be further optimized by, for example, integrating existing screen capture data, functionalities pertaining to exportation, action history, and session saving to ensure reproducibility~\cite{Silva2007Provenance} and achieve analytic provenance~\cite{North2011Analytic, Xu2020Survey}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Conclusion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+This paper has presented a visual analytics approach that aims to aid analysts in interactively exploring and analyzing interaction logs and coupling user interactions with cognitive learning processes. 
+This is achieved through a co-creative process with domain experts, which resulted in a visual analytics prototype system, VISID, that facilitates (1) examination of individual and comparison of user interactions; (2) exploration of user interaction on multiple granularities; and (3) algorithmic support to realize the identification of similar and dissimilar participants, leading to the discovery of exploration strategies.
+The proposed approach was illustrated through an application scenario using event sequences derived from interaction log data from a user experiment with 14 science center visitors. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Supplemental %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Supplemental Materials}
+\label{sec:supplemental_materials}
+
+All supplemental materials are available on OSF at \url{https://osf.io/wnz32/}, released under a CC BY 4.0 license.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Acknowledgments %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% if specified like this the section will be omitted in review mode
+\acknowledgments{
+We wish to acknowledge the work of P. Ljung, Y. He, L. Mangs, and colleagues related to the design of SiN at Visualization Center C. 
+We also thank the participants for their time. 
+The work was supported, in part, by the Swedish Research Council (grant 2020-05000) and the Knut and Alice Wallenberg Foundation (grant KAW 2019\discretionary{.}{}{.}0024). 
+}
+
+
+
+
+
+% \bibliographystyle{abbrv-doi-hyperref}
+\bibliographystyle{abbrv-doi-hyperref-narrow}
+% \bibliographystyle{abbrv-doi}
+%\bibliographystyle{abbrv-doi-narrow}
+
+\bibliography{template}
+
+
+\appendix % You can use the `hideappendix` class option to skip everything after \appendix
+
+
+\end{document}
+

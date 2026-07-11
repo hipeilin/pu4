@@ -1,0 +1,716 @@
+% $Id: template.tex 11 2007-04-03 22:25:53Z jpeltier $
+
+\documentclass[camera]{vgtc}                          % final (conference style)
+%\documentclass[review]{vgtc}                 % review
+%\documentclass[widereview]{vgtc}             % wide-spaced review
+%\documentclass[preprint]{vgtc}               % preprint
+%\documentclass[electronic]{vgtc}             % electronic version
+
+%% Uncomment one of the lines above depending on where your paper is
+%% in the conference process. ``review'' and ``widereview'' are for review
+%% submission, ``preprint'' is for pre-publication, and the final version
+%% doesn't use a specific qualifier. Further, ``electronic'' includes
+%% hyperreferences for more convenient online viewing.
+
+%% Please use one of the ``review'' options in combination with the
+%% assigned online id (see below) ONLY if your paper uses a double blind
+%% review process. Some conferences, like IEEE Vis and InfoVis, have NOT
+%% in the past.
+
+%% Figures should be in CMYK or Grey scale format, otherwise, colour 
+%% shifting may occur during the printing process.
+
+%% These few lines make a distinction between latex and pdflatex calls and they
+%% bring in essential packages for graphics and font handling.
+%% Note that due to the \DeclareGraphicsExtensions{} call it is no longer necessary
+%% to provide the the path and extension of a graphics file:
+%% \includegraphics{diamondrule} is completely sufficient.
+%%
+\ifpdf%                                % if we use pdflatex
+  \pdfoutput=1\relax                   % create PDFs from pdfLaTeX
+  \pdfcompresslevel=9                  % PDF Compression
+  \pdfoptionpdfminorversion=7          % create PDF 1.7
+  \ExecuteOptions{pdftex}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg} % for pdflatex we expect .pdf, .png, or .jpg files
+\else%                                 % else we use pure latex
+  \ExecuteOptions{dvips}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
+\fi%
+
+%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
+\graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
+
+\usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
+\PassOptionsToPackage{warn}{textcomp}  % to address font issues with \textrightarrow
+\usepackage{textcomp}                  % use better special symbols
+\usepackage{mathptmx}                  % use matching math font
+\usepackage{times}                     % we use Times as the main font
+\renewcommand*\ttdefault{txtt}         % a nicer typewriter font
+\usepackage{cite}                      % needed to automatically sort the references
+%\usepackage{tabu}                      % only used for the table example
+%\usepackage{booktabs}                  % only used for the table example
+%% We encourage the use of mathptmx for consistent usage of times font
+%% throughout the proceedings. However, if you encounter conflicts
+%% with other math-related packages, you may want to disable it.
+
+\usepackage{subfigure}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[skip=4pt,font={scriptsize,sf}]{caption}
+
+
+%% If you are submitting a paper to a conference for review with a double
+%% blind reviewing process, please replace the value ``0'' below with your
+%% OnlineID. Otherwise, you may safely leave it at ``0''.
+\onlineid{0}
+
+%% declare the category of your paper, only shown in review mode
+\vgtccategory{Research}
+
+%% allow for this line if you want the electronic option to work properly
+\vgtcinsertpkg
+
+%% In preprint mode you may define your own headline. If not, the default IEEE copyright message will appear in preprint mode.
+%\preprinttext{To appear in an IEEE VGTC sponsored conference.}
+
+%% This adds a link to the version of the paper on IEEEXplore
+%% Uncomment this line when you produce a preprint version of the article 
+%% after the article receives a DOI for the paper from IEEE
+%\ieeedoi{xx.xxxx/TVCG.201x.xxxxxxx}
+
+%%%% test
+\usepackage{scalerel}
+
+%% Paper title.
+\title{Interactive Transformations and Visual Assessment of Noisy Event Sequences: An Application in En-Route Air Traffic Control\vspace{-5pt}}
+
+%% This is how authors are specified in the conference style
+
+%% Author and Affiliation (single author).
+%%\author{Roy G. Biv\thanks{e-mail: roy.g.biv@aol.com}}
+%%\affiliation{\scriptsize Allied Widgets Research}
+
+%% Author and Affiliation (multiple authors with single affiliations).
+%%\author{Roy G. Biv\thanks{e-mail: roy.g.biv@aol.com} %
+%%\and Ed Grimley\thanks{e-mail:ed.grimley@aol.com} %
+%%\and Martha Stewart\thanks{e-mail:martha.stewart@marthastewart.com}}
+%%\affiliation{\scriptsize Martha Stewart Enterprises \\ Microsoft Research}
+
+%% Author and Affiliation (multiple authors with multiple affiliations)
+\author{Peilin Yu\thanks{e-mail: \{peilin.yu, aida.nordman, katerina.vrotsou\}@liu.se.}\\
+    \parbox{1in}{\scriptsize \centering Linköping University \\ Sweden} 
+\and Aida Nordman$^*$\\
+    \parbox{1in}{\scriptsize \centering Linköping University \\ Sweden} 
+\and Lothar Meyer \thanks{e-mail: \{lothar.meyer, supathida.boonsong\}@lfv.se.}\\      
+    \parbox{1in}{\scriptsize \centering LFV, Swedish Air \\ Navigation Service} \\
+\and Supathida Boonsong$^\dagger$\\
+    \parbox{1in}{\scriptsize \centering LFV, Swedish Air \\ Navigation Service} \\
+\and Katerina Vrotsou$^*$\\
+    \parbox{1in}{\scriptsize \centering Linköping University \\ Sweden}
+}
+
+%% A teaser figure can be included as follows
+\teaser{
+  \centering
+  \includegraphics[width=\linewidth]{figures/teaser-revised.jpg}
+  \caption{
+  Main representations of the proposed visual transformation prototype system. 
+  The \textit{Overview+Detail Panel} (top), displays the event sequence in an overview timeline view showing all matches to a selected transformation event-pattern.
+  The \textit{Sequence Weight Assessment View} (bottom) visualizes the event weights along the sequence and acts as a cue for evaluating the difference in the sequences' quality from the previous transformation step.}
+  \label{fig:teaser}
+}
+
+%% Abstract section.
+\abstract{
+Real-world event sequence data, such as activity logs, eye-tracking data, simulation data, and electronic health records, often share characteristics such as a large alphabet of events, fragmentation, noise, and high complexity which makes them difficult to analyze in their raw form. Because of this, simplification and preprocessing through various data transformations are commonly required before the data can be effectively visualized and analyzed.
+Existing methods for such data transformation are either manually applied and rely heavily on user expertise, or use algorithmic approaches to apply bulk operations which can imply the loss of potentially important information without users being aware.  
+To bridge this gap, we propose a visual analytics approach that aims to successively increase the quality of noisy event sequences by supporting an interactive, context-aware application of data transformations. This is achieved by providing cues concerning the potential loss of information that transformation operations may imply and allowing users to explore, and visually assess their impact on the data. 
+Therefore, a central feature of the approach is that users can tune the data transformation process so that important identified data characteristics are preserved.
+We motivate the proposed approach in the domain of air traffic control and illustrate it through a usage example, using event sequences derived by merging eye-tracking and simulator data from a human-in-the-loop simulation experiment with 14 air traffic controllers.
+} % end of abstract
+
+%% ACM Computing Classification System (CCS). 
+%% See <http://www.acm.org/about/class> for details.
+%% We recommend the 2012 system <http://www.acm.org/about/class/class/2012>
+%% For the 2012 system use the ``\CCScatTwelve'' which command takes four arguments.
+%% The 1998 system <http://www.acm.org/about/class/class/2012> is still possible
+%% For the 1998 system use the ``\CCScat'' which command takes four arguments.
+%% In both cases the last two arguments (1998) or last three (2012) can be empty.
+
+\CCScatlist{
+\CCScatTwelve{Human-centered computing}{Visualization}{Visualization application domains}{Visual analytics};
+}
+
+%\CCScatlist{
+  %\CCScat{H.5.2}{User Interfaces}{User Interfaces}{Graphical user interfaces (GUI)}{};
+  %\CCScat{H.5.m}{Information Interfaces and Presentation}{Miscellaneous}{}{}
+%}
+
+%% Copyright space is enabled by default as required by guidelines.
+%% It is disabled by the 'review' option or via the following command:
+% \nocopyrightspace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% for equations space
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+
+%% The ``\maketitle'' command must be the first command after the
+%% ``\begin{document}'' command. It prepares and prints the title block.
+
+%% the only exception to this rule is the \firstsection command
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\firstsection{Introduction}
+\maketitle
+\label{sec:intro}
+Event sequence data are collected widely from a large number of application fields, examples include system logging, simulation experiments, eye-tracking studies, and electronic health records. The common task in the analysis of such data is to build a data model revealing a set of the most representative sequences as patterns. This is often performed through approaches based on sequential pattern mining, sequence inference, or sequence modeling~\cite{Jentner2019Visualization, Guo2021Survey}.
+
+The most distinctive characteristics of event sequence data are also what make them complex to analyze in their raw form. Such characteristics are their lengths, large event alphabets, high fragmentation in the occurrence of events, and a vast amount of noise. These lead to large variations in how patterns manifest in the data and make the identification of patterns both within and between sequences difficult. 
+Therefore, simplification and preprocessing through various data transformations are often required to increase the comparability and applicability of event sequences for further analysis and pattern discovery. 
+Consequently, improving the quality of the event sequence data is an important step in the analysis process which deserves more attention~\cite{Kandel2011Research, Florian2015Data, Furche2016Data}.
+Several event sequence analysis approaches have touched upon this topic, whether directly or indirectly~\cite{Monroe2013Temporal, Guo2018EventThread, Chen2018Sequence, Gotz2014DecisionFlow}.
+Most existing methods, however, exclude expert knowledge from the transformation process and thus risk losing infrequent, yet important, characteristics of the data, targeting specifically erroneous data entries. 
+Many authors would also agree that existing approaches are limited with respect to visual and qualitative feedback, about each data transformation step~\cite{Guo2021Survey, Shneiderman2019Interactive, Wu2016Survey}. Consequently, the user has often limited system support to evaluate the impact of the transformations applied to the data.
+
+To address these shortcomings, we propose a visual analytics (VA) approach that aims to successively increase the quality of noisy event sequences by supporting the interactive, context-aware application of data transformations.
+A crucial part is to investigate relevant data transformation operations and their impact on the event sequences to which they are applied.
+To this end, we (1) introduce pattern-based transformation to aggregate and remove noise from the data, (2) provide users with cues concerning the surrounding context and potential information loss that transformation operations may imply, and (3) allow them to explore and visually assess the impact of these operations.
+This approach enables users to progressively improve the quality of the data while retaining subtle, infrequent, yet crucial information.   
+We implement the proposed approach in a prototype system and exemplify it through an example in the domain of air traffic control (ATC).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Domain & Data Characterization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{Domain \& Data Characterization}
+\label{sec:domain}
+This work finds its primary motivation in the field of en-route ATC where the main objective is to maintain safe and efficient air traffic in a controlled airspace sector by ensuring minimum separation between aircraft. 
+En-route control is performed explicitly on an Air Traffic Service (ATS) surveillance system providing a set of tools to the air traffic controller (ATCO) as support in the detection and resolution of possible conflicts. 
+Conflict detection and resolution (CD\&R) depends heavily on the ATCOs' developed ability to build awareness about and assess the current situation (using the available detection support tools), formulate decisions concerning the resolution of a potential conflict, and take appropriate action to execute this resolution. 
+The crucial nature of CD\&R calls for methods to better understand and characterize the working activity patterns that ATCOs employ to build situational awareness when performing the task, as this has implications in the verification of ATCOs' competence, in the training of new ATCOs, and for the future development and implementation of automation solutions. 
+
+To study the work patterns of ATCOs, human-in-the-loop simulations are normally carried out where ATCOs perform working scenarios.
+The use of activity logging technologies makes it possible to record the working activity of the controllers during the simulations. 
+Since understanding ATCOs' work activity is inherently related to their visual scanning behavior~\cite{Lundberg2015Situation}, eye-tracking can be used to collect detailed eye-gaze data, and data on interaction operations can be logged through the simulator software. 
+Based on these logs, sequences of attention shifts and interaction operations can be extracted and analyzed. Analyzing how ATCOs scan their field of view (FOV) in terms of where they focus their attention, when, in what order, and for how long, can lead to the observation of common working activity and potentially the formulation of template scanning patterns.
+Thus the objective of the analysis is to identify recurring and/or common patterns of activity in how ATCOs perform CD\&R in en-route control from the extracted activity sequences. 
+
+Existing research on visual analysis of eye-tracking data focuses on dividing the FOV into a set of static Areas of Interest (AOI) where sequences can be extracted based on how these areas have been visited~\cite{Blascheck2014State, Raschke2014Visual, Burch2021Eye}. This approach has been applied to ATC in previous research to study visual scan patterns in tower control~\cite{westin2019visual}. 
+In en-route control, however, this is not possible since the entire FOV is composed of moving objects (the aircraft) and dynamic interface elements and thus is continuously changing (see \autoref{fig:radar}). There is a need for alternative methods of extracting discrete sequences that are focused on specific events of interest. 
+
+To this end, in this work, we derive discrete event sequences from merging eye-tracking data with logged interaction data from an en-route ATC simulator. The merged sequence forms a Human-Machine Interaction (HMI) log composed of visual and mouse interaction information.
+The eye-tracking data are collected at a sampling frequency of 60Hz. These are converted into discrete event sequences by checking for timewise intersections between the coordinates of the eye-gaze points and the positions of the graphical objects (e.g., aircraft representations, clickable labels, conflict detection tools, etc.) on the radar screen (\autoref{fig:radar}).
+During the merging process, descriptive \textit{look events} are created when the eye-gaze point's position intersects with the various graphical objects, while unknown/outside events are created otherwise. \textit{Interaction events} are saved whenever the ATCO interacts with the simulator using the mouse. Such events correspond to information query interactions (e.g., clicking on a label), turning graphical support tools on/off (e.g., aircraft separation tool), and giving clearances to aircraft (e.g., to change direction or flight level).
+Due to the way events are extracted, \textit{look events} always obtain a certain duration (the duration of the intersection), while \textit{interaction events} are treated as instantaneous and, consequently, are assigned a short default duration. As such, interaction events are often very sparse and short, though they are crucial for characterizing conflict resolution and for understanding the CD\&R strategy of the ATCO. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\columnwidth]{figures/radar_inverted_shrunk.png}
+    \caption{A radar screen displaying an en-route ATC simulation CD\&R scenario composed of four aircraft. A conflict window is shown at the top left corner. A probe acceptance window is shown at the bottom left corner. A separation monitoring window is shown at the top right corner. The ATCO's eye-gaze point is displayed as a red circle.}
+    \label{fig:radar}
+    \vspace{-14pt}
+\end{figure}
+
+Several aspects make the direct analysis of the data, obtained by the merging operation, not a feasible process.
+\begin{itemize}
+    \itemsep0em
+    \vspace{-4pt} 
+    \item The event sequences are \emph{noisy} due to the large amount of ``unknown'' events. These events are generated whenever it was not possible to determine 
+    intersections of graphical objects on the radar with eye-gaze points or when the eye-gaze points fall outside the radar screen. Between $ 20\% $ to $ 36\% $ of the events in each event sequence are ``unknown'' events. 
+    In addition, look events with very short duration (e.g., below 100 ms) add also noise because one cannot assume in these cases that the subject could perceive any object in the radar screen \cite{Miller1968Response}.
+    %%%%
+    \vspace{-4pt}
+    \item Events with very short dwell times (noise) lead also to data \emph{fragmentation}. 
+    Very short ``unknown'' events (sometimes 1 or 2 ms long) interrupt other events. 
+    Sub-sequences of the form 
+    $ \texttt{look\_A} \rightarrow \texttt{unknown} \rightarrow \texttt{look\_A} $, where $ \texttt{A} $ denotes a certain object in the radar screen such as a waypoint, are a manifestation of this problem in the data. 
+    %%%%
+    \vspace{-4pt}
+    \item A large \emph{number of event types} occurring in the sequences (e.g., over 100), as shown in \autoref{tab:stats} (3rd column, original data).
+    %%%%
+    \vspace{-4pt}
+    \item \emph{High variability} in the data with respect to events duration and frequency. While some events are rare within a sequence (some \textit{look waypoint} events), others occur hundreds of times. The standard deviation (sd) for events' duration is also high. For instance, the duration of the \textit{look aircraft}'s trajectory event $ \texttt{look+NAX1662+TRAJ} $ in the HMI log of ATCO 6 (see \autoref{tab:stats}, \autoref{fig:p6-orig}) varies from 16 to 381 ms, $sd \approx 319$.
+\vspace{-4pt}
+\end{itemize}
+
+The objective of analyzing work patterns by identifying recurring patterns in ATCOs activity sequences could potentially be achieved by employing a sequential pattern mining approach, as attempted in previous research~\cite{westin2019visual}. Faced, however, with the noisy nature of the data, the identification of patterns becomes difficult since the order of events gets diffused and the occurrence of irrelevant events is obstructive. To be able to extract meaningful patterns, reflecting the task-relevant activity of the ATCOs, the event sequences need to be simplified first. This process, however, needs to be performed with care to avoid losing crucial information such as interaction events representing ATC clearances. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Related Work
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{Related Work}
+\label{sec:rw}
+In this work, we focus on the domain of ATC and use eye-tracking and simulator data collected from ATCOs during en-route ATC training sessions. 
+There exists a large body of previous research on visualization and visual analysis of eye-tracking data~\cite{Blascheck2014State, Raschke2014Visual, Burch2021Eye}. Most existing methods, however, analyze the data in terms of static AOIs. These methods are not applicable in this work since the data contains few static artifacts but primarily moving objects, such as the position of aircraft on the screen. Consequently, methods dealing with dynamic objects of interest, continuously changing position, are instead needed. 
+
+Event sequence analysis often requires improving the sequence data quality as part of the analysis process~\cite{Kandel2011Research, Florian2015Data, Furche2016Data}, and several researches~\cite{Monroe2013Temporal, Guo2018EventThread, Chen2018Sequence, Gotz2014DecisionFlow, Wongsuphasawat2011LifeFlow, Cappers2018Exploring, Mathisen2017Clear, Nguyen2020VASABI, Bertens2016Keeping, Gschwandtner2014TimeCleanser} have also recognized the need for data simplifications and techniques to reduce visual complexity.
+A flexible filter-based and substitution-based approach was introduced in EventFlow \cite{Monroe2013Temporal}, which allows users to manually find and replace subsequences by a single event. However, the utility of this approach is limited due to the strict pattern matching, the user is therefore expected to have sufficient domain knowledge to manually enter the pattern in order to perform any relevant \textit{find \& replace}.
+
+Our work allows the data analyst to use a set of previously mined patterns, or specify their own, and it also provides the ability to relax the pattern-matching process (i.e., to find soft patterns\cite{Gotz2016Soft}).
+The proposed approach, additionally, provides visual cues concerning the impact of the data transformations applied on the sequence, and the potential loss of key information in the pattern-match-based simplifications. This feature enables then the fine-tuning of the data transformation process.
+The visual cues aim to be a quality assessment of simplification transformations applied to the event sequences and are based on an event-weight-based quality measure, computed on a sliding window over the sequences.
+Quality metrics have been used by others with a wide variety of aims in data visualization, ranging from clutter reduction to finding the most adequate visual mappings for the data \cite{Bertini2011Quality}.
+EventFlow has been extended \cite{Mauriello16EventFlow} to address the problem of data simplification and proposes different metrics to quantify the level of simplification achieved.
+The quality metrics proposed for EventFlow aim to point out potential interesting parts of the data that can then be used to produce more meaningful visual structures with lower visual complexity.
+%%%
+Similar to the approach presented here, the work described in~\cite{Chen2018Sequence} also considers explicitly the problem of information loss. The latter proposes a minimum description length-based method to find a suitable data overview visualization of the data balancing the visualization's level of complexity and information loss.
+However, there is an important distinction between~\cite{Mauriello16EventFlow, Chen2018Sequence} and our work in this paper.
+The quality assessment methods we propose aim to keep users informed of whether important information is lost during a simplification operation, besides showing the level of simplifications achieved.
+Using the quality measures pipeline presented in \cite{Bertini2011Quality}, the approach and quality measures discussed here focus on the data transformation step of the pipeline, while the systems described in~\cite{Mauriello16EventFlow, Chen2018Sequence} focus mostly on the visual mapping step.
+
+A rule-based simplification approach was also introduced in recent systems to facilitate user-driven/goal-driven pattern matching using user-defined queries.
+Like ours, there are other systems that incorporate regular expressions to support pattern matching in order to account for the noisy data, through the ability to express variations and fuzziness.
+Eventpad \cite{Cappers2018Exploring} allows users to construct rules using regular expressions to simplify event sequences. Another system that utilizes regular expressions is (s$|$qu)eries \cite{Zgraggen2015Squeries}. Similarly, DecisionFlow~\cite{Gotz2014DecisionFlow} produces simplified visualizations based on user queries. However, the noise events are then hidden instead of being transformed, i.e., replaced or merged with another event.
+
+Several systems utilize clustering techniques to simplify the data and reduce visual complexity. For example,
+Mathisen and Grønbæk \cite{Mathisen2017Clear} presented an approach to automatically group events into higher-level composite ones to reduce the number of unique event sequences, leading to simpler aggregation. Similarly, VASABI \cite{Nguyen2020VASABI} summarizes user behaviors by extracting common tasks and categorizes user groups based on these.
+Unlike these systems, ours does not include features to automatically extract higher-level event categories. 
+
+An important aspect to keep in mind about the presented work is that, with respect to the InfoVis pipeline \cite{Card1999Readings}, we propose an interactive visual approach to aid the data transformation phase for the data analyst (i.e., not for the ATCOs). 
+At the same time, we aim at keeping the human-in-the-loop to preserve subtle, infrequent yet crucial information in sequences, thus leading to more relevant, meaningful, and context-relevant transformation results and visualizations.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% System Design Overview & Requirements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{System Design Overview \& Requirements}
+\label{sec:system-design}
+Event sequences may incorporate crucial variations and details in the form of infrequent, short-duration events (or sub-sequences of events) which are however especially important for the analysis task at hand. In the case of CD\&R in the ATC domain, these could imply certain clearances that an ATCO gives to the aircraft, which only occur once in the data but are seminal for the task and should by no means be replaced. 
+Based on the domain and data characterization, our review of related work, collaborative workshops with ATC domain experts and interviews with ATCOs~\cite{Meyer2022Mapping}, we summarize and formulate three \textbf{goals} and a number of \textbf{system requirements} we find necessary in order to implement the proposed approach to address the outlined en-route ATC challenges.\\
+
+\vspace{-4pt}
+\noindent
+\textbf{G1 - Data transformation for improving data quality.} Given the high fragmentation and noise of the data, a set of data transformation operations is needed for users to identify and investigate patterns in the sequence and understand the characteristics given their contexts. 
+\renewcommand{\theenumi}{\textbf{R\arabic{enumi}}}
+\begin{enumerate}
+    \itemsep0em
+    \vspace{-4pt}
+    \item \textit{Flexible pattern matching.} In order to match more results given a pattern input, traditional strict matching (e.g., given a pattern $ \texttt{A} \rightarrow \texttt{B} $, match strictly sequences with $ \texttt{A} \rightarrow \texttt{B} $) poses limitations and reduces the number of results greatly, although we are aware that can be desirable in certain scenarios. Therefore, the ability to control the degree of fuzziness needs to be integrated into the matching process. The concept of soft matching was introduced in \cite{Gotz2016Soft}, and the same principle is to be followed. Here, the temporal aspect needs to be taken into consideration as well, i.e., filter based on the duration of the matched events.
+    
+    \vspace{-4pt}
+    \item \textit{Data transformation operations.} To achieve sequence simplification, various strategies and operations have been studied \cite{Du2017Coping}. Filter-based and substitution-based strategies (e.g., in \cite{Monroe2013Temporal}) have demonstrated effectiveness in sharpening analytic focus, as well as the necessity for aggregation \cite{Elmqvist2010Hierarchical} in data with large numbers of event categories. These approaches are to be followed and pattern-based substitution will be accentuated.
+\end{enumerate}
+
+\vspace{-4pt}
+\noindent
+\textbf{G2 - Evaluate the data transformation process steps.} A set of data transformation operations can be performed. However, these operations alone do not guarantee the resulting sequence is meaningful or relevant.
+Instead of arriving at an end result with low quality directly, we take on a more transparent approach, which allows users to tune the data transformation and evaluate each operation. Calculating a score, after the data transformation process is completed, presents only an overarching metric. The score may not represent the process accurately and can be time-consuming (i.e., restarting multiple data transformation processes and establishing low-quality results). The aim here is to enable informed data transformation operations, by evaluating the effect of the transformation in a step-wise manner.
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \itemsep0em
+    \vspace{-4pt}
+    \item \textit{Cues concerning the data transformation cost/quality.} The system should provide cues for each data transformation operation step concerning the potential loss of key information, in order for users to evaluate the result of their chosen transformation. There are at least two comparison objectives, one is to evaluate the current sequence against the original one, and the other one is to evaluate the current sequence against the previous transformation, which complements the step-wise data transformation process.
+    
+    \vspace{-4pt}
+    \item \textit{Cues concerning the matched pattern.} Another aspect to facilitate and make the exploration process more effective is to keep users informed concerning the matched pattern and the sequence itself. We employ Shneiderman's Visual Information-Seeking Mantra \cite{Shneiderman1996The} when designing the system.
+    Users should have an overview of the entire sequence and its quality, and be able to check on individual events and their details (e.g., after seeing a sub-sequence with high quality). Users should be able to tune the data transformation process, through the medium of cues, so that important identified characteristics of the data (such as rare events or sequences of events) are preserved.
+\end{enumerate}
+
+\vspace{-4pt}
+\noindent
+\textbf{G3 - Ease of access.} 
+The notion to successively increase the quality of noisy event sequences by supporting the interactive, context-aware application of data transformations is applicable to other event sequence data that share similar characteristics. Therefore, some degree of transferability is required. The data transformation operations should be reversible to facilitate the exploration process, through, for example, version history and action log. This is also essential in order to encompass analytic provenance~\cite{North2011Analytic, Xu2020Survey} and ensure reproducibility and transparency in the analysis process.
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \itemsep0em
+    \vspace{-4pt}
+    \item \textit{Action log and action undo.} Users should have an overview of the performed data transformation operations. Each data transformation should be logged, in a step-wise manner, enabling users to analyze the series of operations performed and the respective details in retrospect. Additionally, as a supplement to the iterative exploration, the system needs to handle undo operations and roll back the data to a previous state. This provides the flexibility of experimentation, facilitates investigating alternative transformation operations, and additionally encompasses transferability, transparency, and provenance.
+
+    \vspace{-4pt}
+    \item \textit{Export/import of data progress and log files.} To allow saving a current data transformation progress and continue at a later time, the system should be able to export and import data files. Moreover, the transformation process can be applied to other data that share similar characteristics or are within the same domain. The high-level ideas can be transferred by enabling a user to inspect the set of operations performed previously. This also allows users to share their analysis process, leading to various opportunities for collaborative work.
+\end{enumerate}
+Based on these goals and system requirements, we develop our approach (\autoref{sec:system-feature}) and implement it in a prototype system (\autoref{sec:interface}).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% System Features & Methodology
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{System Features \& Methodology}
+\label{sec:system-feature}
+To address the challenges outlined for noisy event sequences, such as the ones introduced in \autoref{sec:domain}, we propose an approach for successively increasing the quality of the sequences by iteratively applying data transformations. 
+The aim is to create event sequences that are more representative while still preserving important variations and details, such as the presence of short infrequent events which however are crucial and should not be lost.
+Transformation operations are applied by defining and matching a pattern, which we call a \textbf{transformation event-pattern}. This pattern is composed of events and can be generated from mining, custom defined by users, and other means.
+Matching results can then be replaced by an existing, or newly created, event. 
+
+\subsection{Transformation Event-Pattern Definition}
+\label{sec:ptrn-def}
+Transformation operations are applied by defining a transformation event-pattern, which is then matched in the sequence, investigated, and potentially simplified. Identifying recurring sub-sequences and exploring the context in which they appear in the data, in terms of duration and interruptions, can assist a user in making decisions concerning what and how to simplify.
+Transformation event-patterns can be defined as:
+\begin{itemize}
+    \itemsep0em
+    \vspace{-4pt}
+    \item Manual patterns. A user can manually search and match sequences of events of specific interest, such as  $\texttt{event}_1\rightarrow \cdots \rightarrow \texttt{event}_k$ (with $k\geq 1$), that can be substituted by an event.
+    
+    \vspace{-4pt}
+    \item Template patterns. Template patterns can be defined and matched so that bulk substitutions can be applied. Such templates make use of a wildcard character which is matched to each event type successively. For example, the template $ * \rightarrow \texttt{unknown} \rightarrow * $ will successively match each event type in the dataset; $ e_1 \rightarrow \texttt{unknown} \rightarrow e_1 $, $ e_2 \rightarrow \texttt{unknown} \rightarrow e_2 $, etc.  
+    
+    \vspace{-4pt}
+    \item Algorithmically mined sequential patterns. A central notion and driver of the proposed approach is that algorithmically detected sequential patterns could be used as a starting point for improving the quality of event sequences. Such data-driven suggestions can be used in addition to domain knowledge and reveal existing patterns that were unexpected.
+    Candidate transformation event-patterns can be obtained with any sequential pattern mining tool of users' choice. 
+\end{itemize}
+While algorithmically mined patterns may not always be meaningful, since they are identified based on generic constraints, they can serve as a starting point for the analysis. On the other hand, patterns defined manually or using templates incorporate domain-specific expert knowledge and are thus always relevant to the task.
+
+\subsection{Event-Pattern Matching Based Transformation}
+\label{sec:match}
+After a transformation event-pattern is defined manually or selected from the list of mined patterns, all its corresponding matches are identified in the data and presented in tabular form in the system, as shown in \autoref{fig:table+hist} (left).
+Using regular expressions allows queries to be formulated concisely, and it provides a possibility to flexibly define constraints and specify how the matching results can be restricted or relaxed. We support the application of two types of constraints in the matching process. 
+
+Constraints can be defined in terms of the number of non-pattern events interrupting a matched pattern. 
+For example, in the en-route ATC HMI log data of this work, a pattern that consists of the event \textit{look at the tracksymbol of an aircraft} ($ \texttt{look\_tracksymbol} $) followed by ($ \rightarrow $) the event \textit{look at the labelbase of an aircraft} ($ \texttt{look\_labelbase} $), will by default be matched strictly in the sequence, i.e. events are directly adjacent. However, the user is able to adjust the number of interrupting events to, for example, 2, so that results such as $ \texttt{look\_tracksymbol} \rightarrow  \texttt{look\_waypoint}  \rightarrow \texttt{unknown} \rightarrow \texttt{look\_labelbase} $ will also be matched when such a pattern is being queried. 
+This way, the domain experts can inspect the matching results and investigate the reasonable number of interrupting events to be allowed, and thereafter, decide whether the interrupting events are significant or could be merged.
+
+The second supported constraint is concerned with the duration of non-pattern events interrupting a matched pattern.
+Users can specify a threshold value, for example, 500 ms, as the maximum allowed duration for interruptions. Continuing the previous example, if the total duration of the interrupting events $ \texttt{look\_waypoint} \rightarrow \texttt{unknown} $ is longer than 500 ms, then this entry will be filtered out.
+
+\subsection{Transformation Quality Cues}
+\label{sec:quality-cues}
+We introduce three information loss cues to assist users in evaluating candidate data transformation operations.
+First, each event is assigned a \textit{weight}. 
+Based on this, we compute an \textit{event weight graph} reflecting the localized importance of events along the sequence.
+We also introduce a \textit{transformation quality measure} for assessing the overall information loss resulting from iteratively simplifying the entire event sequence. 
+
+A weight ($w_{et}$) is assigned to each event based on their event type, to reflect their importance.
+The estimation of these weights is largely subjective, and should preferably be performed with the help of domain experts who can assess the value of each event type. 
+Events that are more significant are assigned a higher weight.
+For the ATCO HMI log data in focus in this work and in collaboration with ATC experts, the weights are assigned depending on the event type category (\autoref{fig:color}). We distinguish between 4 categories in order of increasing importance: look events, menu events, command events, and clearance events. After discussions with the domain experts, these are assigned weights of 1 to 4, respectively. 
+Events that belong to the same category, e.g., \texttt{open\_menu} and \texttt{close\_menu}, are assigned the same weight. Unknown events are assigned a zero weight since they don't carry any useful information.
+
+The duration of events is another potential indicator of the importance that should be considered. 
+Therefore, a composite event weight $ w_e $ is computed for each event $ e $ in a sequence based on both event type and event duration as follows:
+\begin{equation}
+w_e = w_{et} + (w_{et} \cdot d_e)
+\end{equation}
+where $ w_{et} $ is the event type weight, and $ d_e $ is the event's duration in seconds. For example, if a $ \texttt{look\_waypoint} $ event type has a weight of 1 and its duration is 100 ms, then the final weight would be $ 1 + 1 \cdot 0.1 = 1.1 $. As a result, when an event with low weight has an exceptionally long duration, this should also be reflected so the user is aware of a potential anomaly.
+
+An event weight graph is generated for each event sequence using a sliding time window approach, by computing the sum of the composite event weights, $ w_e $, within each window.
+The size of the time window and the time step are set by the user. The step sizes are determined depending on the data type and resolution. They should be set relevant to the mean event duration in order to best reflect the explored sequence. By default, for the ATCO HMI log data of this work, the window width and step size are set to 2 seconds; these numbers are the results of experimentation considering the very short durations of the events in the dataset. 
+Overall, a window with a too-narrow width will result in a precise representation of the sequence's quality and high computation cost; a window with a too-wide width will smooth out the important detail. Additionally, allowing users to modify the step size means that it is possible to have overlapping windows, if so desired. 
+
+Furthermore, we incorporate a quality measure to provide an overarching score to assess the whole sequence's \textit{transformation quality}. 
+We draw inspiration from the Levenshtein edit distance metric \cite{Levenshtein1966Binary, Hall1980Approximate}.
+The Levenshtein distance is measured by calculating the minimum number of operations (including insertion, deletion, and substitution) used to transform one string to another. The lower the Levenshtein distance between two sequences, the higher their similarity. In this work, we extend the Levenshtein distance and introduce a measure that takes into account the weight and duration of events. We call this transformation \textit{time-scaled weighted measure} ($ \tau $) and define it as follows. 
+\begin{equation}
+\tau(a, b) =
+\begin{cases}
+\sum_{e \in a}{w_e},\hspace{4mm} \text{if}\ |b| = 0 \\
+\sum_{e \in b}{w_e},\hspace{4mm} \text{if}\ |a| = 0 \\
+\min{
+\begin{cases}
+w_{\text{head}(a)} + \tau(\text{tail}(a), b)\\
+w_{\text{head}(b)} + \tau(a, \text{tail}(b))\hspace{10mm} \text{otherwise}\\
+\lvert w_{\text{head}(b)} - w_{\text{head}(a)}\rvert+\tau(\text{tail}(a), \text{tail}(b))
+\end{cases}
+}
+\end{cases}
+\end{equation}
+where $ a $ is the original sequence, and $ b $ is the current sequence after performing transformation operations.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\columnwidth]{figures/color-scheme.png}
+    \caption{Weight and color scheme per event type category. The first column displays the top-level event type categories, the second column displays the weight for each category, and the third column contains the color scales used for each category.}
+    \label{fig:color}
+    \vspace{-8pt}
+\end{figure} 
+
+\subsection{Pattern Replacement \& Aggregation}
+\label{sec:aggregate}
+After a transformation pattern has been defined, matched, and evaluated, users can select all or specific matched results and replace them with another event. This event can be an existing or a new one introduced by users. 
+How users decide which matching results should be replaced is based on various factors, such as the importance and the frequency of the interrupting events. Visual cues in the system provide guidance in this aspect. For example, a user may consider replacing all results that matched the pattern $ \texttt{look\_tracksymbol} \rightarrow \texttt{look\_labelbase} $, with two interrupting events allowed in-between (an example match being $ \texttt{look\_tracksymbol} \rightarrow \texttt{look\_waypoint} \rightarrow \texttt{unknown} \rightarrow \texttt{look\_labelbase} $), with a new event code $ \texttt{look\_aircraft} $. However, if one of the results contains, for example, a command event $ \texttt{cmd+aircraft\_show\_traj} $, then the user would likely exclude this entry from replacement, as this particular event is significant. 
+
+Since matched patterns are often highly frequent and repetitive, the replacement process will likely result in several consecutive occurrences of the newly inserted event, such as the $ \texttt{look\_aircraft} $ in this running example (e.g., $ \texttt{look\_aircraft} \rightarrow \texttt{look\_aircraft} \rightarrow \texttt{look\_aircraft} $). Thus, following replacement, aggregation is needed to merge such consecutive events to form single aggregate events. 
+To achieve this, the sequence is scanned for consecutive and identical events, these are then merged into a single event. As a result, the sequence is simplified.
+
+\subsection{Provenance \& Reproducibility}
+We have included functionality in the system to achieve analytic provenance~\cite{North2011Analytic, Xu2020Survey} and ensure reproducibility. 
+Tracking a user's transformation operations can help to understand the reasoning processes through their interactions.
+To this end, we record all successive transformation operations in an action history. 
+Each time a user performs a replacement or aggregation successfully, this action is stored in an action history and displayed in a table with all respective details, such as the selected transformation pattern, the active constraints, the ID of the replacing event, the interrupting events excluded from the replacement, and so on. 
+
+When the user is satisfied with the transformation process, the action history can be exported to a log file, together with the simplified data, and shared. This log file can be uploaded and displayed at a later time, enabling the recreation of the transformation process. 
+Since our system currently works with one sequence at a time, this function serves as a supplementary feature and reduces workloads. The user can then start to work on another similar sequence, upload the log file to read all the transformation steps performed in the previous sequence, and use this as a reference and starting point.
+
+Being able to undo transformation operations and test alternative options is another important feature for verifying actions\cite{Du2017Coping, Xu2020Survey}. 
+We, therefore, include an undo function to allow users to revert the transformation process back to the previous stages, avoiding the need to restart the simplification from scratch and try to repeat the same lengthy process. Undo operations are also back-traced in the log and not registered in the final action log output. 
+
+\begin{figure*}[ht]
+    \centering
+    \subfigure{
+        \includegraphics[width=.6\textwidth]{figures/71-23-table-2.png}
+        \label{fig:selection_table}
+    }
+    \subfigure{
+        \includegraphics[width=.3\textwidth]{figures/71-23-hist-2.png}
+        \label{fig:hist}
+    }
+    \caption{Central views in the visual transformation prototype system. Left: The \textit{Pattern Match \& Selection Table} list the matched patterns together with supporting information and allow users to select which patterns should be transformed. Right: The \textit{Interruptions View} gives a statistical summary of the interrupting events in descending frequency order, to aid users with decision-making during the simplification process and works as a filtering mechanism of the \textit{Pattern Match \& Selection Table}.} 
+    \label{fig:table+hist}
+    \vspace{-14pt}
+\end{figure*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% System Description
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{System Description}
+\label{sec:interface}
+We implement the proposed interactive transformation approach in a prototype system which enables users to iteratively apply transformation operations, while continuously being informed about the context and potential information loss of these operations through visual cues incorporated in key views.
+The components of the system and how they implement the functionality introduced (\autoref{sec:system-feature}) to satisfy the posed requirement (\autoref{sec:system-design}) are presented below.
+
+\paragraph{Control Panel}
+The \textit{Control Panel} is where users configure the transformation (\textbf{R1}): (1) define the transformation event-pattern to be matched and replaced, either by manually entering the query in a text field or by selecting from previously mined patterns in a dropdown list and (2) set and adjust the matching constraints options (as described in \autoref{sec:system-feature}).
+When a pattern is set, it will be identified and matched in the whole sequence. The results will be listed in the \textit{Pattern Match \& Selection Table} and visualized along a timeline in the \textit{Overview+Detail Panel}. Information about the events interrupting a pattern is visualized in the \textit{Interruptions View}.
+
+\paragraph{Overview+Detail Panel}
+The \textit{Overview+Detail Panel} presents an overview of the locations of the matched patterns in the explored sequence (\textbf{R4}).
+It is composed of a timeline representation that initially displays the entire sequence (\autoref{fig:p6-orig} top part). 
+A timeline representation was chosen as it is one of the most widely used and recognized representations for event sequences because it explicitly represents the timing, order, and duration of all events. 
+Once a pattern is matched, all matched pattern events are visualized along the timeline with each distinct event type taking up a row, as shown in \autoref{fig:teaser}. 
+Extracting the matching events in this manner clearly distinguishes them from the rest of the sequence along the timeline while keeping the context in which they appear and illustrating their duration and interruptions between them.
+
+The color scheme used in the representation is based on the event type categories, as shown in \autoref{fig:color}. Each event-type category is assigned a more distinctive hue and event types belonging to that category are assigned similar colors by varying the value/saturation.
+Panning and zooming operations are possible for close inspection (\autoref{fig:teaser}). 
+When constraints are activated and adjusted in the control panel, visualizations will be updated accordingly.
+
+\paragraph{Sequence Weight Assessment View}
+Below the timeline is the \textit{Sequence Weight Assessment View}, displaying the computed event weight graph (\autoref{sec:quality-cues}) as area graphs for visualizing the event weights along the sequence (\autoref{fig:teaser}). This view has a double function, it reflects the importance of events over time across the sequence, and acts as a cue for evaluating the effect of replacing matched patterns (\textbf{R3, R4}). We chose an area graph for representing the event weights over time since it smoothly displays the changes in the computed weight over time in a continuous manner, and users can easily and effectively compare between the different layers and identify the changes. 
+A histogram could be used as an alternative, but that would imply non-smooth changes between neighboring time windows and thus was not preferred.
+The view is composed of three overlapping area graphs on three layers, reflecting the differences between the current sequence's event weight graph and the previous/original sequences' weight graphs.
+The uppermost layer is rendered in a light blue color and displays the event weights of the current sequence, as shown in \autoref{fig:sequences} (b), and the middle layer is rendered in a light red color and displays the weights of the sequence with the previous transformation step, and the lowermost layer (not visible by default) is rendered in a dark gray color and displays the weights of the original sequence. This way, users can explore the effect of the current transformation with respect to the previous iteration and the original sequence. The graph thus gives an overall sense of the information loss that successive transformation operations imply.
+Users have the flexibility to toggle on/off on the two area graphs for different comparisons. 
+
+\paragraph{Pattern Match \& Selection Table}
+The matched pattern results are also presented in a table, together with supporting contextual information relating to the matches, such as the total number, duration, and weight of the interrupting events (\textbf{R3, R4}). 
+Users can select a match result on the table, and the selected pattern will be highlighted in the timeline of the \textit{Overview+Detail Panel}, which gives users a better context of where the match is located in the sequence.
+After inspecting the \textit{Pattern Match \& Selection Table} and gaining insights into the matched patterns, users can select which pattern matches should be transformed and proceed to apply the operation. The selection occurs in the table using checkboxes, as shown in \autoref{fig:table+hist} (left).
+
+\paragraph{Interruptions View}
+The \textit{Interruptions View} is a bar chart displaying the number of occurrences per interrupting event type in descending order, as shown in \autoref{fig:table+hist} (right) (\textbf{R4}). 
+A bar chart was chosen as a well-recognized, effective representation for displaying categorical values.
+This view gives an overview of which interrupting event types occurred the most/least, providing context about how a match appears in the data and acts also as a mechanism for filtering the \textit{Pattern Match \& Selection Table}.
+For example, if an event is of a special type and thus can not be replaced, users can deselect this specific event in the \textit{Interruptions View} and all matches that contain it will be filtered out from the \textit{Pattern Match \& Selection Table}, ensuring that they cannot be selected for simplification.
+The \textit{Interruptions View} combines contextual information and visual cues to aid users to evaluate and make decisions on which matches should be replaced in the next step.
+
+\paragraph{Simplification Panel}
+After selecting the match results to be replaced, the transformation operation is applied using the \textit{Simplification Panel}. Two text fields are available to input an event code and a descriptive name. Following this, the matched patterns are replaced (\textbf{R2}). Users can choose to continue replacing more matches or aggregate the sequence if satisfied. An example was previously described in \autoref{sec:match}. In case of erroneous replacement or aggregation, users also have the opportunity to undo actions and revert the sequence to a previous state (\textbf{R5}). Users can keep track of what was done or undone in the \textit{Action History} panel. Additionally, the resulting transformed data files and action history log can be exported for sharing, further mining processes, or other operations (\textbf{R6}). 
+
+\paragraph{Action History}
+When a replace or aggregate operation is executed, the action is recorded and displayed in the \textit{Action History} with respective details, including the selected pattern, constraint details, replacement details, action type, and transformation cost (\textbf{R5}). If an action is undone, the corresponding history row will be removed. The history log file can also be exported, as mentioned previously, this allows users to save the transformation process and reuse it as a reference or starting point in a later session when working with a similar event sequence, or share their analysis process with a collaborator. When users upload the log file, the simplification steps will be displayed in a separate table.
+This feature has significant value in the design of interfaces in general~\cite{Shneiderman2016Designing}, and in visualization and visual analysis in particular in any application domain~\cite{Silva2007Provenance, North2011Analytic}.
+
+\paragraph{Transformation Quality View}
+Finally, we compute two values that reflect the overall quality of the transformation (\textbf{R3}). First, the number of reduced events is tracked and presented at each step as a percentage of simplification achieved compared to the original sequence. Second, since the sequence is treated as a string, edit distance can be used to quantify how dissimilar the before/after sequences are at each step.
+We use the transformation \textit{time-scaled weighted measure}, $\tau$, introduced in this work and described in \autoref{sec:quality-cues} to compute the sequence quality.
+Based on the selected matches for simplification in the \textit{Pattern Match \& Selection Table}, calculations are made to indicate the quality gain/loss of a simplification operation performed.
+The simplification quality measurement will be updated as users do selections on the table. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Usage Example
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{Usage Example}
+To exemplify our proposed VA approach, we have applied it to a longitudinal and high-resolution dataset composed of the HMI logs of 14 ATCOs performing CD\&R scenarios during en-route ATC on a simulator, as described in \autoref{sec:domain}. 
+The aim of analyzing the HMI log sequence of the ATCOs is to study and understand their scanning and interaction behavior when performing CD\&R and reveal common patterns/strategies of their activity. 
+
+The average length of the sequences in the original dataset is 3834 events, the average duration is 502801 ms, the average event duration is 131 ms, and the median event duration is 49.4 ms. \autoref{tab:stats} contains detailed descriptive statistics of the original dataset.
+
+\begin{figure*}[t]
+    \centering
+    \subfigure[Original sequence: Sequence timeline and event weight graph before transformations.]{
+        \includegraphics[width=.9\textwidth]{figures/before.png}
+        \label{fig:p6-orig}
+    }
+    \subfigure[Event weight graphs of consecutive transformations.]{
+        \includegraphics[width=.9\textwidth]{figures/simplification-steps.png}
+        \label{fig:steps}
+    }
+    \subfigure[Simplified sequence: Sequence timeline and event weight graph after transformations.]{
+        \includegraphics[width=.9\textwidth]{figures/after.png}
+        \label{fig:p6-simpl}
+    }
+    \caption{Transformation process of the usage example showing the effect of the successive operations in the event weight graphs. }
+    \label{fig:sequences}
+    \vspace{-14pt}
+\end{figure*}
+
+\subsection{Mine Original Data}
+To exemplify the need for transforming the sequences, we attempt to mine sequential patterns from the original data to identify common activities among the ATCOs. We use a progressive pattern-growth-based mining approach to do this, where patterns of interest can be grown interactively~\cite{Vrotsou2019Exploratory}. However, alternative visual mining approaches could be used instead~\cite{Jentner2019Visualization}. 
+According to domain experts, detection of conflicts is commonly achieved using the separation support tool of the radar interface, while conflict resolution is usually indicated by a clearance to change direction, flight level, or heading. So, we focus our mining around events reflecting these actions; we mine patterns that start with adding a separation tool and patterns that end with a clearance event. We select to explore first the most frequent sep\_tool added, $ \texttt{cmd\_sep\_NAX1662+UAE151\_add} $, and mine patterns with a local support of 50\% and a maximum duration of 10 seconds between adjacent pattern events (i.e., an interruption of max 10 seconds) to explore the scanning for conflict process. We exclude unknown or outside events from being considered in the mining. When expanding the pattern tree to three levels (to get 3-tuples) the algorithm identifies 768 patterns that match the constraints (see \autoref{fig:ptrns} top left).
+Similarly, we mine patterns resulting in the direction clearance $ \texttt{clr\_UAE151\_dct} $ with support 70\% and a duration of 20 seconds between adjacent pattern events to explore the final process before giving the clearance. When expanding the pattern tree to three levels the algorithm identifies 166 patterns that match the constraints (see \autoref{fig:ptrns} bottom left). Both these sets of pattern results are clear indicators of the large variation and noise in the data. They don't display concise behavior in how ATCOs perform the tasks. Therefore, we attempt to improve the quality of the data by transforming them with our proposed VA approach. 
+
+\begin{table}
+\caption{Descriptive statistics of the original vs transformed data.}
+\renewcommand{\arraystretch}{0.9}
+\footnotesize
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllll}
+
+\multicolumn{5}{c}{Original/Transformed Data} \\ \hline
+ATCO & 
+\begin{tabular}[c]{@{}l@{}}Sequence\\Length\end{tabular} & \begin{tabular}[c]{@{}l@{}}Discrete\\Events\end{tabular} & \begin{tabular}[c]{@{}l@{}}Average\\Event\\Duration\end{tabular} & 
+\begin{tabular}[c]{@{}l@{}}Median\\Event\\Duration\end{tabular} \\ \hline
+1 & 3818  / 1222 & 104 / 103 & 119,4 / 373,0 & 37,5 / 200 \\
+2 & 2838  / 1056 & 96  / 95  & 155,9 / 419,0 & 50   / 233 \\
+3 & 3894  / 1155 & 79  / 78  & 133,5 / 450,0 & 66   / 234 \\
+4 & 3745  / 1250 & 82  / 82  & 144,5 / 432,9 & 50   / 225 \\
+5 & 3841  / 1066 & 88  / 84  & 125,8 / 449,1 & 50   / 234 \\
+6 & 3954  / 957  & 94  / 88  & 121,6 / 502,5 & 50   / 233 \\
+7 & 4142  / 1137 & 75  / 74  & 117,2 / 427,0 & 50   / 267 \\
+8 & 3672  / 1259 & 82  / 81  & 146,6 / 427,4 & 50   / 250 \\
+9 & 4999  / 1110 & 86  / 85  & 83,0  / 465,7 & 38   / 200 \\
+10 & 4006 / 1180 & 79  / 78  & 126,1 / 428,0 & 50   / 250 \\
+11 & 3480 / 1104 & 97  / 90  & 140,2 / 441,9 & 50   / 234 \\
+12 & 4015 / 1219 & 83  / 80  & 138,6 / 456,5 & 50   / 250 \\
+13 & 3576 / 954  & 103 / 99  & 133,9 / 501,8 & 50   / 261,5 \\
+14 & 3692 / 1434 & 89  / 92  & 148,3 / 381,8 & 50   / 217 \\ \hline 
+Average & 3833,7 / 1150,2 & 88,4 / 86.9 & 131,0 / 439,7 & 49,4 / 234,9 \\
+\end{tabular}
+}
+\label{tab:stats}
+\vspace{-10pt}
+\end{table}
+
+\vspace{-2pt}
+\begin{figure*}[htb]
+    \centering
+    \subfigure{
+        \includegraphics[width=.28\textwidth]{figures/original-sep-no-unknowns_sup50_10sec_3levels.png}
+        \label{fig:orig-sep}
+    }
+    \subfigure{
+        \includegraphics[width=.65\textwidth]{figures/simpl_sep_sup50_10sec_5levels.png}
+        \label{fig:simpl-sep}
+    }    
+    \subfigure{
+        \includegraphics[width=.28\textwidth]{figures/or_back_clr_70sup_20sec.png}
+        \label{fig:orig-clr}
+    }
+    \subfigure{
+        \includegraphics[width=.63\textwidth]{figures/simpl_back_clr_70loc-sup_20sec.png}
+        \label{fig:simpl-clr}
+    }
+    \caption{Sequence patterns are mined from the original (left) and transformed (right) data using the progressive pattern-growth-based approach of~\cite{Vrotsou2019Exploratory}. Patterns starting with ATCOs turning on a separation tip (top) and ending with a direction change clearance (bottom) are mined.}
+    \label{fig:ptrns}
+    \vspace{-10pt}
+\end{figure*}
+
+\subsection{Transform Data}
+The first step is to identify an initial set of patterns from the data which are reflecting individual ATCO's activity patterns. Hence, in contrast to the patterns \textit{between} ATCOs sought previously, here we are looking for characteristic patterns \textit{within} single individual sequences that can be indicators of consistent, repetitive behavior that can be used as starting points for aggregation. For this, we have used a window-based sequence mining approach for long event-sequences~\cite{Vrotsou2020Window} since this mining approach focuses on detecting recurring patterns within a long sequence and has also been motivated in the field of ATC. We import this initial set of identified patterns, along with the original data, one sequence at a time, into our system and initiate the transformation process. 
+
+\autoref{fig:p6-orig} shows the original HMI log sequence of a single ATCO. The sequence is characterized mainly by very short events (with the exception of a longer look event in the middle) and we see that there are many unknown/undefined (gray) events.
+The \textit{Sequence Weight Assessment View} shows concentrations of high-weight events. 
+
+We start by applying a set of basic cleansing transformations. 
+\renewcommand{\theenumi}{\arabic{enumi}}
+\begin{enumerate}
+    \itemsep0em
+    \vspace{-4pt}
+    \item Research on the minimum duration for fixations has found a span between 100-275 ms to be justifiable depending on the task~\cite{Salthouse1980Determinants, Irwin1992Visual, Blignaut2009Fixation}. With this in mind, we replace all eye-tracking events ($ \texttt{look\_events} $) which are less than 100 ms long with a new \texttt{unknown} event, since we cannot assume that information has been acquired by the ATCO in this case.
+    
+    \vspace{-4pt}
+    \item The most frequently occurring events in the data are the ``outside'' and ``no-match'' events. We match and replace both these with the new $ \texttt{unknown} $ event.
+    
+    \vspace{-4pt}
+    \item  We perform a bulk operation in order to match and replace all instances where the same \textit{event} is interrupted by an $ \texttt{unknown} $ event; i.e., $ \textit{event} \rightarrow \texttt{unknown} \rightarrow \textit{event} $. 
+    This process helps to mitigate the unnecessary high frequency of very short $ \texttt{unknown} $ events by approximating them to the nearest logged meaningful events, thereby decreasing noise and data fragmentation.
+\end{enumerate}
+\vspace{-4pt}
+The information loss of these steps can be seen in the event weight graphs (\autoref{fig:steps} (1-3)).
+
+Following this, we start an interactive process of pattern-based transformations using the imported identified patterns. The imported patterns show common/repetitive patterns the ATCOs perform. The system allows the user to visually inspect the occurrences, weights, and distribution of the matched pattern in the \textit{Overview+Detail panel}, and inspect the events interrupting it in the \textit{Interruptions View}, as described in \autoref{sec:interface} and seen in \autoref{fig:teaser},~\autoref{fig:table+hist} (right). 
+We make the following pattern-based transformation to the data. 
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+    \itemsep0em
+    \vspace{-4pt}
+    \item A frequently performed pattern is to interchange between looking at the separation tip of the two main aircraft in conflict (NAX1661 and UAE151). We start by matching $\texttt{look+NAX1661+sep\_tip} \rightarrow \texttt{look+UAE151+sep\_tip}$ with a gap of up to 2 interrupting events. We explore the \textit{Interruptions View} and see that the pattern is mostly interrupted by looking at the corresponding aircraft events, which can be considered as a part of the same pattern. We increase the gap successively while the interrupting activities continue being concise. We stop at gap 5 (\autoref{fig:teaser}), and exclude important interrupting events from being replaced by deselecting them in the \textit{interruptions view} (\autoref{fig:table+hist}, right), in this case, we exclude the \textit{look at Medium-Term Conflict Detection} (MTCD) event (\autoref{fig:teaser}).
+    
+    \vspace{-4pt}
+    \item Often, a pattern is to interchange between looking at the track symbol of the aircraft and its label. This happens for all aircraft in the scenario. Hence, we successively match the pattern $ \texttt{look\_tracksymbol} \rightarrow \texttt{look\_labelbase} $ and its reverse for each aircraft. When the pattern has up to one interrupting event, and this event is the unknown event, we aggregate them to a new \texttt{look\_plane} event. We do this for all 4 aircraft in the simulated scenario.  
+    
+    \vspace{-4pt}
+    \item Another frequent pattern is to select an aircraft's label, check something, and then unselect the label. We match the \texttt{select} $\rightarrow$ \texttt{unselect} commands with a gap of up to 2 interrupting events. We explore the interrupting events in the bar chart and unselect command and clearance events so that these will not get replaced. If the pattern is interrupted by an unknown event (which is the most common case) or a look event related to the same aircraft, we replace it with a new event $ \texttt{cmd+aircraft+label} $. We do this for all 4 aircraft in the simulated scenario.  
+\end{enumerate}
+The information loss of these steps is seen in the event weight graphs (\autoref{fig:steps}(4-6)). The resulting simplified sequence of the ATCO's HMI log can be seen in \autoref{fig:p6-simpl}. The sequence is characterized by fewer longer events, the event weight graph has been smoothened but preserves the peaks indicating important activities.  
+
+After applying these simplification steps to all ATCO sequences, we obtained a simplified set having an average length of 1150 events, an average event duration of 440 ms, and a median event duration of 235 ms (see \autoref{tab:stats} for detailed descriptive statistics). 
+The resulting transformed dataset has less fragmentation and longer events.
+
+\subsection{Mine Transformed Data}
+To explore whether this transformation has had positive effects on pattern identification, we mine the simplified dataset using the same target events and constraints as prior to applying the VA approach.
+The results of the mining are shown in \autoref{fig:ptrns} (right side). The conflict detection process, initiated by adding a separation tip between aircraft UAE151 and NAX1662 is primarily followed by scanning activity patterns involving looking at the separation tip of each aircraft, looking at their trajectories, and looking also primarily at the movement of the third aircraft THA, but also checking the fourth aircraft SAS (\autoref{fig:ptrns} (top right)).
+\autoref{fig:ptrns} (bottom right) shows the behavior of the ATCOs in the later stages after having monitored the conflict and right before they are ready to apply a resolution. Here we again see patterns involving looking at the separation tips of the two aircraft in conflict, checking the other two aircraft, but also looking at the MTCD tool soon before giving clearance to the UAE aircraft to change its direction.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Discussion & Conclusions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-4pt}
+\section{Discussion \& Conclusions}
+The proposed VA approach to successively increase the quality of noisy event sequences was achieved in the presented visual transformation prototype system and exemplified in the usage example. 
+The goals and respective requirements we set, successfully guided the interface design choices we made as described in \autoref{sec:interface}.  
+There are, however, a number of points and limitations that are worth discussing and addressing in future work which we outline below. 
+
+First, while developed for data from the ATC domain, the proposed approach could likewise be applied to other application domains where the raw data share similar characteristics, for example, in activity logs, simulation data, and electronic health records. Such characteristics include long durations, large event alphabets, high fragmentation in the occurrence of events, and high amount of noise.
+
+A common limitation of data wrangling is that the original data is altered, which can introduce bias. While this applies to our work as well, in our approach, we try to make the transformation process as transparent as possible by providing information regarding the context and effect of transformation operations. 
+
+Data transformation in our approach is performed interactively. This choice has been made to ensure that domain expertise is considered throughout the process and the user can control and tune the simplifications performed. While this is one of the strengths of our work, it is also a limitation as the process becomes more cumbersome. To mitigate this, the prototype system offers various functionalities, such as bulk replacements and linked selection between different views. 
+
+Another important point concerns the scalability of the proposed prototype system with respect to the size and complexity of the event sequences it supports. 
+Currently, the system is designed to process one sequence at a time. We made this choice on the premise that different sequences may need different transformations. This, however, is limiting if the aim is to uniformly transform multiple event sequences. The exported action history log provides a blueprint for applying the same transformations to larger datasets. Multi-sequence transformation is currently only partially supported. Full support would require some views to be re-designed. Pattern matching and replacement, the \textit{Pattern Match \& Selection Table} and the \textit{Interruptions View} already support a multi-sequence application. 
+The \textit{Overview+Detail} and \textit{Sequence Weight Assessment} view, however, would need adjustments as they are designed to reflect characteristics of, and assess transformation effects on a single sequence.
+Separate tabs could be used for each sequence as a direct future extension. Alternatively, these views could be re-designed to highlight matched events directly on the timeline instead of extruding them to separate rows.
+Similarly, the event weight graph could be altered to reflect the aggregated weights of all sequences, or corresponding graphs could be included under each sequence. 
+Regarding the complexity of a sequence, as in any timeline-based event sequence representation, scalability and legibility are affected by the number of events composing the sequence (length), as well as the size of the event type alphabet (number of unique events).  
+The visual representations become difficult to interpret when the number of events and event types increase (our dataset contains up to 157 unique event types) as there are not sufficient visual cues, such as colors, shapes, screen space, etc. This, however, can be seen as an additional motivation for why data transformation tools, such as this, are needed.
+
+A final note concerns future work regarding the introduced transformation \textit{time-scaled weighted measure} ($ \tau $), which reflects an overarching score for the sequence before and after transformation operations.
+In spite of its potential, it is currently not fully utilized in the data transformation process.
+A possible application is to use the score generated from a sequence transformation process as a measure of comparison when applying the same transformation steps to other ATCOs' sequences. 
+A large difference in score may indicate that additional transformations should be investigated further, such a cause can be due to other latent noise events. 
+Another potential application is to use it in the \textit{Sequence Weight Assessment View} instead of the event weight. Currently, this view reflects where important (high-weight) events are located at a glance. On the contrary, applying the $ \tau $ function in the sliding window will visualize the sequence's weight before and after each transformation operation. Nevertheless, further investigations regarding the $ \tau $ function and its limitation are needed.
+
+To conclude, this paper has presented a visual analytics approach to successively increase the quality of long and noisy event sequences by supporting the interactive, context-aware application of data transformations guided by cues. The work was inspired by, and addresses current challenges in, en-route ATC training, where the complex and individual strategies of ATCOs for CD\&R are to be revealed and studied. Our approach allows users to improve the data quality through pattern-based transformation, such as replacement and aggregation, to remove noise from the data while preserving subtle, infrequent yet crucial information. 
+
+\acknowledgments{This work has been supported by the Swedish Research Council grant 2020-05000 and by the Swedish Transport Administration through the OVaK project.}
+
+\bibliographystyle{abbrv}
+%\bibliographystyle{abbrv-doi}
+%\bibliographystyle{abbrv-doi-narrow}
+%\bibliographystyle{abbrv-doi-hyperref}
+%\bibliographystyle{abbrv-doi-hyperref-narrow}
+
+\bibliography{IEEEabrv,PacVis-shortnames}
+\end{document}
