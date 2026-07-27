@@ -291,7 +291,7 @@ Therefore, this question focuses on theory-informed interpretation of interactio
 
 
 
-In response to these questions, this thesis contributes visual analytics approaches for analyzing interaction event sequence data across three settings.
+In response to these questions, this thesis contributes visual analytics approaches for analyzing interaction event sequence data across two application domains.
 
 The four included papers form a methodological progression: improving noisy raw sequences, revealing interaction strategies, extracting behavioral patterns, and finally interpreting these patterns in relation to higher-level constructs, such as learning frameworks and reasoning.
 
@@ -977,9 +977,9 @@ Two such domains ground this thesis: a safety-critical professional domain and i
 
 In the ATC context, and en-route control in particular, the primary task is to maintain safe separation between aircraft through CD\&R.
 
-Understanding how controllers build and maintain situational awareness during this task has direct implications for competence assessment, training, and the design of future automation, which motivates the analysis of their working practices~\cite{lundberg2015situation}.
+Understanding how ATCOs build and maintain situational awareness during this task has direct implications for competence assessment, training, and the design of future automation, which motivates the analysis of their working practices~\cite{lundberg2015situation}.
 
-Because a controller's competence is closely tied to visual scanning behavior during CD\&R, eye-tracking is commonly combined with interaction logging to capture where attention is directed, in what order, and for how long~\cite{westin2019visual, meyer2022mapping}.
+Because an ATCO's competence is closely tied to visual scanning behavior during CD\&R, eye-tracking is commonly combined with interaction logging to capture where attention is directed, in what order, and for how long~\cite{westin2019visual, meyer2022mapping}.
 
 
 
@@ -991,7 +991,7 @@ En-route control, however, is different, since the field of view comprises movin
 
 Methods that presuppose static areas of interest are consequently inapplicable, and alternative approaches are required that extract discrete event sequences anchored to specific objects and events of interest rather than to fixed screen regions.
 
-A further characteristic of the data from this domain is that they are long, noisy, and highly fragmented, yet contain infrequent events, such as the clearances a controller issues, that are rare but are central to the task and must not be discarded during any simplification.
+A further characteristic of the data from this domain is that they are long, noisy, and highly fragmented, yet contain infrequent events, such as the clearances an ATCO issues, that are rare but are central to the task and must not be discarded during any simplification.
 
 This combination of dynamic areas of interest and rare but critical events embedded in noisy sequences defines the analytical demands that the transformation work of this thesis addresses.
 
@@ -1155,7 +1155,7 @@ Data quality is improved by providing visual cues about the potential loss of in
 
 Each transformation operation can moreover be undone and is recorded as part of the analytical workflow, so that the sequence of steps applied to the data remains transparent and reproducible.
 
-The approach is examined in the domain of air traffic control, using event sequences derived by merging eye-tracking and simulator data from a human-in-the-loop simulation experiment with 14 air traffic controllers.
+The approach is examined in the domain of air traffic control, using event sequences derived by merging eye-tracking and simulator data from a human-in-the-loop simulation experiment with 14 ATCOs.
 
 As a result, the complexity of the sequences can be progressively simplified while subtle, infrequent, yet crucial events are retained, which leads to better downstream mining outcomes.
 
@@ -1327,7 +1327,7 @@ In the ATC setting, the general characteristics of real-world event sequence dat
 
 This work therefore investigates how the quality of long, noisy, complex interaction event sequences can be progressively improved through the interactive, context-aware application of transformation operations, while preserving infrequent yet crucial information.
 
-The approach targets users such as ATC instructors, researchers, and domain experts seeking to understand controllers' work activities from interaction and eye-tracking logs.
+The approach targets users such as ATC instructors, researchers, and domain experts seeking to understand ATCOs' work activities from interaction and eye-tracking logs.
 
 The corresponding system architecture is summarized in \cref{fig:w1-sys}.
 
@@ -1513,7 +1513,7 @@ The primary contributions are summarized as follows:
 
     The applicability of the approach is demonstrated using HMI logs from 14 ATCOs, yielding sequences with substantially reduced fragmentation while preserving infrequent yet crucial information (\cref{fig:sequences}).
 
-    Mining sequential patterns before and after transformation showed that the transformed sequences yield coherent and interpretable patterns of controller activity.
+    Mining sequential patterns before and after transformation showed that the transformed sequences yield coherent and interpretable patterns of ATCO activity.
 
 \end{itemize}
 
