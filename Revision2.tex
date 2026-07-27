@@ -4,11 +4,7 @@
 In the summer of 1854, a severe cholera outbreak killed more than 600 people in the Soho district of London within a matter of weeks. 
 The prevailing medical theory of the time held that cholera spread through ``bad air''.
 John Snow, a physician who was skeptical of this theory, traced cholera deaths by plotting bars on a street map of the neighborhood (\cref{fig:cholera}), showing a striking spatial concentration of cases near a single water source.
-<<<<<<< HEAD
 This finding eventually led to the removal of the pump handle, and the outbreak subsided.
-=======
-This finding eventually led to the pump removal, and the outbreak subsided.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Snow's map not only described the epidemic but also made a causal argument visible in a way that words and tables of numbers could not, resulting in a life-saving intervention.
 
 \begin{figure}[H]
@@ -76,10 +72,6 @@ It instead requires analytical framing, domain expertise, and human judgment tha
 \section{Visual Analytics as an Approach}
 
 Taken together, the four challenges outlined above motivate the use of \textit{visual analytics}~\cite{thomas2005illuminating, keim2008visual}.
-<<<<<<< HEAD
-=======
-Visual analytics couples automated analysis with interactive visualization to support analytical reasoning over complex data~\cite{thomas2005illuminating}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Visual analytics has been defined as the science of analytical reasoning facilitated by interactive visual interfaces~\cite{thomas2005illuminating}, integrating automated analysis with interactive visualization to support reasoning over complex data.
 Its defining characteristic is the tight coupling of computational methods and visual representations through interaction, which keeps the human analyst in the loop throughout the analytical process.
 This coupling directly addresses the four challenges above.
@@ -109,6 +101,7 @@ The second setting concerns \textbf{informal learning}~\cite{andre2017museums} i
 The exhibit is implemented on a large touch table that enables visitors to explore complex demographic and societal data about Sweden through an interactive map.
 This setting involves diverse groups of people with varying backgrounds, motivations, and prior knowledge engaging freely with a digital environment.
 Understanding how such visitors explore the exhibit, which strategies they employ, and what their interaction patterns reveal about engagement and cognitive processing is of direct interest to educational researchers, exhibit designers, and science center stakeholders.
+
 The third setting concerns \textbf{formal learning} in a digital learning environment, \textit{Tracing Carbon} (TC)~\cite{mani2026designing}.
 In this environment, pupils demonstrate their understanding of the global carbon cycle by drawing directed connections between carbon reservoirs.
 This activity is task-directed and embedded in a structured educational objective.
@@ -335,27 +328,15 @@ Rather than treating automated analysis and visual representation as separate st
 A recurring design consideration within this paradigm is the balance between automation and human control.
 Fully automated pipelines can obscure the assumptions and transformations applied to the data, whereas purely manual analysis is impractical at scale.
 Human-in-the-loop designs address this gap by enabling analysts to investigate, validate, and refine algorithmically generated results with domain knowledge.
-<<<<<<< HEAD
 This coupling allows automation to handle scale while human judgment retains control over interpretation, a balance that situates the work of this thesis in the visual analysis of complex event sequence data.
 
 
 
-=======
-This coupling allows automation to handle scale. 
-At the same time, human judgment retains control over interpretation, situating this thesis's work and foregrounding the visual analysis of complex event sequence data.
-
-
-
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visual Analytics Process}
 \label{subsec:rw-va-process}
 The process underlying visual analytics is commonly described as a closed loop in which data, automated models, and visualizations are coupled through user interaction~\cite{keim2008visual}, as illustrated in~\cref{fig:va-process}.
-<<<<<<< HEAD
 Within this loop, raw data are first transformed and then mapped to both computational models and visual representations; the analyst inspects the visualizations, steers the underlying models, and iteratively refines both, while the resulting insight accumulates toward knowledge and feeds back to inform subsequent transformation and analysis~\cite{keim2008visual}.
-=======
-Within this loop, raw data is first transformed and then mapped to both computational models and visual representations; the analyst inspects the visualizations, steers the underlying models, and iteratively refines both, while the resulting insight accumulates toward knowledge and feeds back to inform subsequent transformation and analysis~\cite{keim2008visual}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Interaction is central to this process, serving as the means by which domain knowledge enters the analytical pipeline, allowing automated methods to scale analysis while keeping human judgment in control of what is preserved, examined, and interpreted.
 
 \begin{figure}[t]
@@ -363,11 +344,7 @@ Interaction is central to this process, serving as the means by which domain kno
   \includegraphics[width=.9\textwidth]{figs/va-process.pdf}
   \caption{%
     The visual analytics process adopted in this thesis, with each stage annotated by its high-level \textit{stage goals}.
-<<<<<<< HEAD
     Transformed data are passed to both interactive \textit{visualization} and automated \textit{computational models}, which are coupled through user interaction (the highlighted region); insight accumulates toward \textit{knowledge}, and a \textit{feedback loop} returns to refine the data.
-=======
-    Transformed data is passed to both interactive \textit{visualization} and automated \textit{computational models}, which are coupled through user interaction (the highlighted region); insight accumulates toward \textit{knowledge}, and a \textit{feedback loop} returns to refine the data.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
     Illustrations adapted from an established visual analytics process model~\cite{keim2008visual}; the stage-goal annotation draws inspiration from a multi-level task framework~\cite{zinat2025multi} and a survey of event sequence analysis~\cite{guo2022survey}, while the inclusion of interpretation and hypothesizing at the knowledge stage is particular to this thesis.
   }
   \label{fig:va-process}
@@ -435,11 +412,7 @@ This balance is especially consequential when infrequent events carry analytical
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Event Sequence Visual Comparison}
 
-<<<<<<< HEAD
 Visual comparison of event sequences provides the interpretive bridge between algorithmic similarity and human reasoning, rendering the relationships uncovered by similarity measures, examined in the following section, inspectable and actionable.
-=======
-Visual comparison of event sequences provides the interpretive bridge between algorithmic similarity and human reasoning, rendering the relationships uncovered by such measures inspectable and actionable.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 The type of comparison is defined by the granularity of the items being compared, ranging from individual events and subsequences to whole sequences and cohorts~\cite{linden2023survey}, while the visual arrangement typically follows one of three principal strategies: \textbf{juxtaposition}, \textbf{superposition}, and \textbf{explicit encoding}~\cite{gleicher2011visual, gleicher2018considerations}.
 Several examples are illustrated in~\cref{fig:example-visual-comparison}.
 
@@ -491,11 +464,7 @@ Throughout, a central concern is how these methods can be integrated into the an
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-<<<<<<< HEAD
 \subsection{Event Sequence Similarity Measures}
-=======
-\subsection{Event Sequence Similarity Measure}
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
 At the foundation of much algorithmic event sequence analysis lies the notion of similarity, since quantifying how alike two sequences are is the primitive on which clustering, ranking, retrieval, outlier detection, and strategy identification all depend~\cite{linden2023survey}.
 A wide range of similarity measures has been developed~\cite{mantaci2008distance, studer2016what}, and these are grouped along several axes, for example, by data type and underlying methodology, including \textbf{lock-step} and \textbf{elastic} measures~\cite{ding2008querying, saeed2006novel, aghabozorgi2015time}.
@@ -514,11 +483,7 @@ Furthermore, each event in an interaction log typically carries multiple attribu
 Additionally, many distance measures cannot be applied directly to categorical event data, since assigning numeric values to categories imposes an ordering and spacing that the data do not inherently possess, and the analytical weight of an event is often domain-dependent, with some event types carrying greater significance than others.
 Custom distance functions that address these challenges are therefore often required and are pursued in this thesis.
 
-<<<<<<< HEAD
 These measures collectively make clear that similarity is not a universal property~\cite{linden2023survey}.
-=======
-Taken together, these measures make clear that similarity is not a universal property~\cite{linden2023survey}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Its definition depends on the data type, sequence length, temporal structure, level of abstraction, and analytical goals.
 Selecting an appropriate measure requires explicit decisions about what constitutes a meaningful difference, whether in event type, order, timing, duration, pace, or noise.
 Once a measure has been chosen and applied, the pairwise similarities it produces yield a distance matrix over all sequences, which serves as the input to techniques such as clustering, comparison, and summarization.
@@ -573,11 +538,7 @@ Applied to clustered interaction data, process discovery offers a model-based ch
 % This convergence reflects a broader recognition that interpreting and validating mined results is the essential step in turning algorithmic output into actionable knowledge.
 % Domain expertise is required to judge whether a result is meaningful rather than an artifact of noise or sampling.
 
-<<<<<<< HEAD
 In combination, these algorithmic methods make it feasible to analyze collections of event sequences at a scale beyond manual inspection.
-=======
-Taken together, these algorithmic methods make it feasible to analyze collections of event sequences at a scale beyond manual inspection.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Yet this feasibility carries a cost that is central to this thesis, since delegating analysis to automated methods introduces a gap in interpretability and trust.
 The output of a clustering algorithm or a mined model is not self-evidently correct, as a frequent subsequence need not be meaningful, a cluster boundary need not be justified, and a discovered model may fit some sequences poorly.
 When such results are presented without visibility into how they were produced, the analyst is left unable to judge their validity or to bring domain knowledge to bear.
@@ -594,11 +555,7 @@ The \textit{visualization} and \textit{computational models} stages support tran
 A broader aim of analyzing interaction data is to understand what those actions imply, since a sequence of recorded interactions is rarely of interest in itself but as evidence of the strategy, intent, or cognitive process that produced it.
 This shift, from observable low-level events to the higher-level constructs they signify, is central to this thesis.
 
-<<<<<<< HEAD
 A higher-level construct is a conceptual category, typically drawn from learning theories, for example Bloom's taxonomy~\cite{bloom1956taxonomy, anderson2001taxonomy} and systems thinking~\cite{kim1999introduction, monat2015what}, onto which observed behavior is mapped so that it becomes interpretable.
-=======
-A higher-level construct is a conceptual category, typically drawn from learning theories, for example Bloom's taxonomy~\cite{bloom1956taxonomy, anderson2001taxonomy} and systems thinking~\cite{kim1999introduction, monat2015what}, onto which observed behavior is mapped so that it becomes interpretable as meaningful.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Such constructs are not directly recorded in an interaction log; they are inferred from it.
 The most immediate of these is the notion of an exploration strategy, a purposeful way of moving through a system that recurs across users or tasks.
 Interaction logs preserve the ordering, timing, and recurrence of actions from which such strategies can be reconstructed.
@@ -633,22 +590,14 @@ The visual analysis of eye-tracking data has been studied extensively, but predo
 This assumption has enabled the study of visual scan patterns in settings such as tower control.
 En-route control, however, is different, since the field of view comprises moving aircraft and dynamic interface elements and is therefore continuously changing.
 Methods that presuppose static areas of interest are consequently inapplicable, and alternative approaches are required that extract discrete event sequences anchored to specific objects and events of interest rather than to fixed screen regions.
-<<<<<<< HEAD
 A further characteristic of the data from this domain is that they are long, noisy, and highly fragmented, yet contain infrequent events, such as the clearances a controller issues, that are central to the task and must not be discarded during any simplification.
-=======
-A further characteristic of the data from this domain is that they are long, noisy, and highly fragmented, yet contain infrequent events, such as the clearances a controller issues, that are rare but are central to the task and must not be discarded during any simplification.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 This combination of dynamic areas of interest and rare but critical events embedded in noisy sequences defines the analytical demands that the transformation work of this thesis addresses.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Event Sequences in Learning Environments}
 
-<<<<<<< HEAD
 Interactive touchscreen exhibits have become prevalent in informal learning settings such as museums and science centers, where they are designed to prolong engagement and support understanding and knowledge transfer, often by aligning with educational frameworks that classify learning processes~\cite{andre2017museums}.
-=======
-Interactive touchscreen exhibits have become prevalent in informal learning settings such as museums and science centers, where they are designed to prolong engagement and support understanding and knowledge transfer, often by aligning their design with educational frameworks that classify learning processes~\cite{andre2017museums}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 The design of such environments is frequently framed through the notion of \textit{exploranation}, which combines exploratory and explanatory visualization to scaffold communication and learning~\cite{ynnerman2018exploranation}.
 To study how visitors engage with these exhibits, their interactions are logged, producing event sequences that reflect the unique exploration approaches individuals adopt.
 
@@ -667,12 +616,8 @@ Bridging this gap, therefore, requires more than extracting patterns; it require
 
 This also intersects with the field of learning analytics, which focuses on measuring and analyzing learner data to understand and optimize learning.
 Rather than treating learning analytics as a separate application domain, this thesis positions it as the target research community to which the interaction-log analysis presented here contributes, since interpreting exploration behavior in relation to cognitive and motivational frameworks is precisely the kind of question that community pursues.
-<<<<<<< HEAD
 Taken together, these challenges underscore the need for visual analytics approaches that render interaction sequences interpretable as evidence of higher-level cognitive constructs.
-=======
-Taken together, these challenges underscore the need for visual analytics approaches that render interaction sequences interpretable as evidence of higher-level cognitive constructs, a contribution directed at that community.
 
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
 
 
@@ -878,11 +823,7 @@ Three complementary means of defining patterns are supported:
 \end{itemize}
 
 Since strict sequential matching misses many meaningful subsequences in fragmented data, the matching process adopts the principle of soft pattern matching~\cite{gotz2016soft}, permitting several non-pattern events to interrupt a match.
-<<<<<<< HEAD
 This flexibility broadens what can be transformed but makes the consequences of each operation harder to anticipate, motivating the quality cues described next.
-=======
-This flexibility broadens what can be transformed, which potentially makes the consequences of each operation harder to anticipate.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 % Two constraints control this flexibility: a \textit{gap count constraint} limits the number of interrupting events between consecutive pattern events, and a \textit{gap duration constraint} limits their total duration. The latter allows analysts to distinguish momentary glances away from genuine shifts of attention.
 
 
@@ -990,21 +931,13 @@ finding its way through the unknown.
 Informal learning environments, such as museums and science centers, increasingly leverage interactive visualizations to communicate complex concepts and foster public STEM literacy~\cite{besancon2022exploring, borner2016investigating}.
 At the core of these public exhibits is the concept of \textit{exploranation}, a paradigm blending exploratory and explanatory visualization to scaffold user learning~\cite{ynnerman2018exploranation, host2020nano}.
 To structure and evaluate user engagement, designers often draw on educational frameworks such as Bloom's taxonomy, which defines a cognitive hierarchy ranging from lower-order retrieval and understanding to higher-order evaluation and creation~\cite{anderson2001taxonomy, bloom1956taxonomy}.
-<<<<<<< HEAD
 However, the design of interaction techniques for science communication in public contexts remains understudied~\cite{besancon2021state}, as is how visitors navigate these environments and construct knowledge.
-=======
-However, how public visitors navigate these environments and construct knowledge remains understudied~\cite{besancon2021state}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Interaction logs capture detailed traces of visitor behavior, yet mapping such low-level log data to higher-level cognitive learning processes is non-trivial.
 
 To investigate this challenge, a real-world exploranative exhibit was selected: ``\textit{Sweden in Numbers}'' (SiN), an exhibit part of the Norrk\"{o}ping Visualization Center~\cite{viscenter2026}.
 It visualizes Swedish demographic and societal data via a choropleth map on a large, multi-user interactive touchscreen table (\cref{fig:SiN}).
 Selecting a geographic region triggers a pop-up information panel (henceforth ``infopanel'') displaying localized statistical summaries.
-<<<<<<< HEAD
 Within these infopanels, visitors can adjust a temporal \textit{Year} slider or apply categorical filters, such as \textit{Gender}, across four thematic dimensions: \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}.
-=======
-Within these infopanels, visitors can adjust temporal sliders or apply categorical filters, such as \textit{Gender} and \textit{Year}, across four thematic dimensions: \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 The resulting interaction sequences are heterogeneous and multi-granular, varying substantially across individuals and reflecting a wide range of problem-solving strategies and exploration behaviors.
 
 Existing event sequence analysis approaches support visualization, comparison, and summarization through techniques such as timelines, aggregation, clustering, and similarity analysis~\cite{guo2022survey}.
@@ -1048,19 +981,11 @@ Five levels are used to design an experiment consisting of five tasks of increas
 
     \item 
     \textbf{Apply}:
-<<<<<<< HEAD
     This stage requires participants to perform more complex comparisons across multiple data points to reach a general conclusion.
 
     \item 
     \textbf{Analyze}:
     This level involves differentiating between non-explicit elements by organizing data in a suitable order to perform mental calculations and integrate those findings.
-=======
-    This stage requires users to perform more complex comparisons across multiple data points to reach a general conclusion.
-
-    \item 
-    \textbf{Analyze}:
-    It involves differentiating between non-explicit elements by organizing data in a suitable order to perform mental calculations and integrate those findings.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
     \item 
     \textbf{Evaluate and Create}: This is the most complex and open-ended dimension, involving testing assumptions and generating hypotheses to identify potential factors associated with broader changes in the data.
@@ -1068,24 +993,14 @@ Five levels are used to design an experiment consisting of five tasks of increas
 
 This design makes the targeted cognitive processes explicit and provides a basis for interpreting observed interaction strategies.
 The approach was developed through a year-long collaborative design process involving a multidisciplinary team of visualization researchers, visual learning and communication experts, and an engineer involved in developing the exhibit.
-<<<<<<< HEAD
 Across 12 workshops, following a user-centered design process~\cite{christmann2022visualizing}, domain insights were distilled into a set of high-level design requirements mapped to analytical tasks.
-=======
-Over 12 workshops, following a user-centered design process~\cite{christmann2022visualizing}, domain insights were distilled into a set of high-level design requirements mapped to analytical tasks.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 A pilot study provided an initial testbed, revealed logging limitations that bounded the analytical scope, and guided the iterative refinement of the resulting system.
 
 \paragraph{Multi-granular data abstraction.}
 To couple interaction data with cognitive dimensions, the interaction logs are abstracted into three levels of granularity.
-<<<<<<< HEAD
 The \textit{interface level} tracks the lifecycle of high-level components, such as infopanels, indicating whether participants explored them simultaneously or sequentially.
 The \textit{interaction level} records discrete, active engagement with these components.
 The \textit{attribute-change level} captures fine-grained contextual updates, such as gender filtering, recording the exact data states examined.
-=======
-The \textit{interface level} tracks the lifecycle of high-level components, such as infopanels, indicating whether users explored them simultaneously or sequentially.
-The \textit{interaction level} records discrete, active engagement with these components.
-The \textit{attribute change level} captures fine-grained contextual updates, such as gender filtering, capturing the exact data states examined.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Together, these levels reveal both how the interface is used and which data are being explored.
 
 
@@ -1093,11 +1008,7 @@ Together, these levels reveal both how the interface is used and which data are 
 The approach is realized in a visual analytics system, \textsc{VISID}, which implements two coordinated views (\cref{fig:visid}).
 The \textsc{Individual View} supports detailed examination of a single participant's chronological exploration through overview+detail and details-on-demand interactions.
 This includes an \textit{Interaction View} that couples interaction event sequences with superposed attribute-change sequences, and a \textit{Holistic View} that visualizes the concurrent lifetimes of open infopanels at the interface level.
-<<<<<<< HEAD
 The \textsc{Comparison View} supports cross-participant comparison through a nested juxtaposed layout~\cite{gleicher2011visual}.
-=======
-The \textsc{Comparison View} supports cross-user comparison through a nested juxtaposed layout~\cite{gleicher2011visual}.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Pairwise sequence similarity is computed using dynamic time warping~\cite{berndt1994using}.
 The resulting scores sort all sequences relative to a selected baseline participant and are further visualized in a \textit{Similarity Plot} as a heatmap and a clustergram, highlighting emerging behavioral groups and outliers.
 Analysts thus move iteratively between cohort-level similarity structure and individual-level inspection to identify shared exploration strategies and investigate diverging participants.
@@ -1112,11 +1023,7 @@ Analysts thus move iteratively between cohort-level similarity structure and ind
     (2) \textit{Holistic View} displays interface events showing the lifetime duration and concurrently opened infopanels for Task 3.
     The \textsc{Comparison View} (bottom) offers (3) \textit{Sequence Comparison Visualization} sorting interaction sequences by similarity to the baseline participant P7.
     Participants who are most similar to P7 also adopt a similar strategy.
-<<<<<<< HEAD
     Each event is colored by \textit{Municipality}, with attribute-change sequences for \textit{Year} and \textit{Gender} superposed.
-=======
-    Each event is colored by \textit{Municipality}, with attribute change sequences for \textit{Year} and \textit{Gender} superposed.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
     (4) The similarity score bars and delta values depict the similarity and dissimilarity with respect to the baseline participant.
     (5) \textit{Cluster View} shows potential clusters of similar participants.
     The image is reprinted with permission. \copyright IEEE.
@@ -1189,11 +1096,7 @@ and the mind decides what it means.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background and Domain}
 
-<<<<<<< HEAD
 The previous chapter demonstrated that interaction strategies can be identified and mapped to higher-level cognitive constructs through multi-level analysis of event sequence data collected in a designed, controlled experiment.
-=======
-Interaction strategies can be identified and mapped to higher-level cognitive constructs through multi-level analysis of complex sequence data collected in a designed, controlled experiment.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
 In the third paper of the thesis, the same exploranative environment, ``\textit{Sweden in Numbers}'' (SiN), from the previous work is investigated.
 However, rather than controlled experimental data from predefined tasks, this work examines unstructured interaction data collected in the wild over five months, yielding 117 interaction sessions.
@@ -1245,11 +1148,7 @@ A process model is generated per cluster and rendered as an arc diagram with fix
 Conformance checking connects these cluster-level abstractions back to individual sequences.
 A fitness score quantifies how well each sequence conforms to its cluster's process model, and the resulting ranking allows analysts to identify representative sequences and outliers (\cref{fig:reVISID}.4).
 Finally, an interactive cluster adjustment supports expert-driven refinement.
-<<<<<<< HEAD
 By comparing process models, analysts can identify clusters that exhibit the same exploration strategy yet are separated by the clustering algorithm, validate the grouping through conformance scores, and merge them based on domain knowledge (\cref{fig:reVISID}.3).
-=======
-By comparing process models, analysts can identify clusters that exhibit the same exploration strategy yet are separated by the clustering algorithm, merge them based on domain knowledge, and validate the merged result through recomputed conformance scores (\cref{fig:reVISID}.3).
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 This establishes an iterative refinement loop in which clusters are repeatedly inspected, restructured, and reassessed until a set of meaningful, interpretable, and domain-relevant interaction strategies is obtained.
 
 \begin{figure}
@@ -1305,11 +1204,7 @@ This directly realizes the thesis contribution on \textit{user-driven extraction
 
 This work also addresses \textbf{RQ2}, which concerns the multi-level exploration and comparison of complex event sequences across different levels of granularity.
 The clustering hierarchy supports analysis at the cohort level, where analysts inspect, subdivide, and merge behavioral groups; the process models provide an intermediate abstraction that characterizes the behavior shared within each cluster; and the individual sequences within each cluster, ordered by conformance scores, allow analysts to distinguish representative behaviors from deviating or outlier sequences.
-<<<<<<< HEAD
 This design allows analysts to move fluidly between summarized behavioral patterns and their underlying interaction sequences, thereby contributing to \textit{multi-level exploration and comparison of interaction strategies} (C2).
-=======
-This design allows analysts to move fluidly between summarized behavioral patterns and their underlying interaction sequences, thereby realizing the thesis contribution on \textit{multi-level exploration and comparison of interaction strategies} (C2).
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
 Finally, this work addresses \textbf{RQ4} by supporting the interpretation and mapping of complex interaction patterns in relation to higher-level constructs.
 The extracted strategies were interpreted through the lenses of Bloom's taxonomy~\cite{anderson2001taxonomy, bloom1956taxonomy} and a three-factor situational interest model~\cite{lisa2010measuring}, relating minimal engagement to lower-order cognitive processing and sustained sessions with repeated attribute changes to deeper engagement.
@@ -1363,11 +1258,7 @@ Complementing this hierarchy, a related conceptualization, ``the iceberg''~\cite
 Reasoning of this kind is difficult to observe directly: although modern educational software captures granular digital traces of pupil activity, these traces are often analyzed as isolated, discrete actions rather than as evidence of conceptual reasoning.
 Since ST reasoning is non-linear, emergent, and feedback-driven, it cannot be directly parsed from such data; mapping fine-grained interaction sequences to theoretically grounded ST constructs thus constitutes a central challenge for the analysis of educational interaction data.
 
-<<<<<<< HEAD
 \textit{Tracing Carbon} (TC)~\cite{mani2026designing} is a web-based learning environment for pupils in grades 7 to 9 in the Swedish educational context and provides a suitable testbed for addressing this challenge (\cref{fig:tcInterface}).
-=======
-\textit{Tracing Carbon} (TC)~\cite{mani2026designing} is a web-based learning environment for middle-school pupils (grades 7 to 9) in the Swedish educational context and provides a suitable testbed for addressing this challenge (\cref{fig:tcInterface}).
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 TC features interactive tasks centered on the carbon cycle, including a relational arrow-drawing task in which pupils explicitly map carbon transfers between reservoirs, externalizing how they structurally organize relationships within a complex system.
 Since TC was designed around the ST hierarchy, the environment aligns with the analytical lens applied in this work.
 
@@ -1415,11 +1306,7 @@ To support interpretation in relation to ST, discrete interaction sequences are 
     \item 
     \textbf{Within-category}: Connecting two reservoirs that belong to the same category.
 \end{itemize}
-<<<<<<< HEAD
 A temporal measure of \textbf{sparsity} complements these events by capturing how active a pupil is over a given period, and a Boolean \textbf{correctness} measure indicates whether a connection is correct.
-=======
-A temporal measure of \textbf{sparsity} complements these events by capturing how active a pupil is over a given period, and a boolean \textbf{correctness} measure indicates whether a connection is correct.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 
 To capture how these behaviors evolve over time, the sequences are transformed into multidimensional time series by computing normalized signals for each descriptor over a sliding window.
 The resulting representation reveals how a pupil's problem-solving strategies shift throughout a task. 
@@ -1469,11 +1356,7 @@ The approach was evaluated through a case study and a structured expert validati
 The evaluation adopted an insight-oriented, qualitative perspective~\cite{lam2012empirical, carpendale2008evaluating}, focused on whether the approach supports experts in exploring interaction patterns and generating hypotheses about pupils' ST reasoning.
 
 The case study yielded several insights.
-<<<<<<< HEAD
 The clustering workflow identified four cohorts with distinct strategy profiles and differing correctness outcomes, and a further clustering on correctness revealed a cohort combining the lowest correctness with the lowest use of within-category connections, prompting hypotheses about which forms of exploration are less productive.
-=======
-The clustering workflow identified four cohorts with distinct strategy profiles, one of which combined the lowest correctness with the lowest use of within-category connections, prompting hypotheses about which forms of exploration are less productive.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 The motif workflow uncovered previously uncharacterized trial-and-error behavior, shown to be shared across multiple pupils, and revealed that pupils often shift between strategies during problem solving.
 These observations further drove hypothesis generation regarding ST reasoning levels, for example linking failures to maintain \textit{within-category} connections to difficulties in identifying system boundaries (Synthesis level) and cross-system replication of a completed structure to generalization skills (Implementation level).
 
@@ -1505,20 +1388,12 @@ The primary contributions are summarized as follows:
 
     \item 
     \textbf{Case study}:
-<<<<<<< HEAD
     The usefulness and applicability of the proposed approach are demonstrated through pupil interaction data collected in the TC environment, uncovering previously unseen behavioral patterns and generating new hypotheses concerning the relationship between problem-solving strategies and ST reasoning.
-=======
-    The usefulness and applicability of the proposed approach are demonstrated through pupil interaction data collected in the TC, uncovering previously unseen behavioral patterns and generating new hypotheses concerning the relationship between problem-solving strategies and ST reasoning.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
     Domain experts confirmed the resulting behavioral findings by triangulating them against an earlier analysis of the same dataset.
 \end{itemize}
 
 Taken together, these contributions first address \textbf{RQ2}, which concerns the multi-level exploration and comparison of complex event sequences across different levels of granularity.
-<<<<<<< HEAD
 Three coordinated panels operationalize distinct analytical scales: the \textsc{Cluster Panel} supports cohort-level characterization and comparison; the \textsc{Motif and Comparison Panel}, through its \textit{Motif Library}, enables cross-sequence inspection of recurring patterns and comparison across pupils; and the \textsc{Individual Panel} preserves the temporal structure of event sequences through a Marey-chart-based representation in complementary sequential and durational modes.
-=======
-Three coordinated panels operationalize distinct analytical scales: the \textsc{Cluster Panel} supports cohort-level characterization and comparison; the \textsc{Motif and Comparison Panel}, through its \textit{Motif Library}, enables cross-sequence inspection of recurring patterns and multi-user comparison; and the \textsc{Individual Panel} preserves the temporal structure of event sequences through a Marey-chart-based representation in complementary sequential and durational modes.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 This design allows analysts to move fluidly from cohort-level tendencies through shared motifs to fine-grained individual behavior, thereby realizing the thesis contribution on \textit{multi-level exploration and comparison of interaction strategies} (C2).
 
 This work also addresses \textbf{RQ3}, which investigates how algorithmic workflows support guided, human-in-the-loop characterization and identification of complex interaction patterns.
@@ -1564,11 +1439,7 @@ Pattern-based transformations, specified manually, through templates, or from al
 
 The second research question concerns how visual analytics methods can support the multi-level exploration and comparison of complex event sequences across different levels of granularity.
 This question is primarily addressed by Papers~II and~IV, and further supported by Paper~III; together, these papers realize contribution~C2.
-<<<<<<< HEAD
 Paper~II supports multi-granular investigation across the interface, interaction, and attribute-change levels, together with individual inspection and comparison across participants.
-=======
-Paper~II supports multi-granular investigation across the interface, interaction, and attribute change levels, together with individual inspection and comparison across participants.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Paper~III scales this capability to in-the-wild data by supporting exploration around a guided, navigable cluster hierarchy while retaining access to individual sequences.
 Paper~IV develops cohort-level, pattern-level, and individual-level representations, with a Marey-chart-based visualization revealing the pacing and structure of interactions in sequential and durational modes.
 
@@ -1675,11 +1546,7 @@ Sequence similarity measures, clustering, process mining, motif discovery, and c
 This thesis also shows, however, that algorithmic methods do not produce definitive behavioral explanations on their own.
 The computational results are often sensitive to parameter choices, and equally reasonable settings can yield different patterns; analysts must therefore be able to explore alternative configurations and tune parameters interactively rather than accept the computed outcome as final.
 Moreover, when only the final output is presented, the algorithm acts as a black box: the analyst can see what was extracted but not \textit{how} or \textit{why}, leaving no basis for judging whether a cluster, process model, or motif reflects genuine behavior or an artifact of the method.
-<<<<<<< HEAD
 The approaches in this thesis therefore make the extraction process itself transparent and adjustable, enabling analysts to understand, steer, and act upon it.
-=======
-The approaches in this thesis therefore make the extraction process itself transparent and adjustable, enabling analysts to understand, steer, and act upon.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Computational outputs thus become entry points for visual exploration and expert-driven sense-making rather than final analytical results, a sense-making that extends beyond the data themselves toward higher-level constructs that interaction logs do not record directly.
 
 This ability to connect interaction patterns to higher-level constructs becomes particularly important in learning contexts.
@@ -1689,11 +1556,7 @@ The analysis of interaction logs from interactive exhibits and digital learning 
 Theories, such as Bloom's taxonomy and systems thinking, serve as interpretive frameworks that guide exploration and hypothesis formation, and, in the case of systems thinking, also as design lenses shaping behavioral abstractions and the structure of visual analytics systems.
 At the same time, the thesis emphasizes that visual analytics systems cannot directly infer users' intentions, knowledge, or cognitive abilities; instead, they support the formulation of evidence-based hypotheses that can subsequently be examined with additional educational, qualitative, or experimental evidence.
 
-<<<<<<< HEAD
 In sum, these conclusions point to the broader contribution of visual analytics in this area: bridging computational pattern extraction and contextual human interpretation.
-=======
-Taken together, these conclusions point to the broader contribution of visual analytics in this area: bridging computational pattern extraction and contextual human interpretation.
->>>>>>> 55a70427196e4477aa4e139682560fb127f94d9a
 Across these domains, the proposed approaches make interaction data accessible to analysts who need to understand not only what users did, but also how they did it and what their actions may imply.
 By integrating data transformation, pattern discovery, interactive visualization, and domain expertise, this thesis demonstrates a pathway from raw event sequences to interpretable behavioral insights.
 
