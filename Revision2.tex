@@ -171,11 +171,11 @@ Understanding how ATCOs carry out this task, and which behavioral patterns chara
 
 The second setting concerns \textbf{informal learning}~\cite{andre2017museums} in a public science center setting, where an interactive exhibit, ``\textit{Sweden in Numbers}'' (SiN), was investigated.
 
-The exhibit is implemented on a large touch table that enables visitors to explore complex demographic and societal data about Sweden through an interactive map.
+The exhibit is implemented on a large touch table that enables participants to explore complex demographic and societal data about Sweden through an interactive map.
 
 This setting involves diverse groups of people with varying backgrounds, motivations, and prior knowledge engaging freely with a digital environment.
 
-Understanding how such visitors explore the exhibit, which strategies they employ, and what their interaction patterns reveal about engagement and cognitive processing is of direct interest to educational researchers, exhibit designers, and science center stakeholders.
+Understanding how such participants explore the exhibit, which strategies they employ, and what their interaction patterns reveal about engagement and cognitive processing is of direct interest to educational researchers, exhibit designers, and science center stakeholders.
 
 The third setting concerns \textbf{formal learning} in a digital learning environment, \textit{Tracing Carbon} (TC)~\cite{mani2026designing}.
 
@@ -191,7 +191,7 @@ The analytical challenge is not merely to describe what pupils did, but to inter
 
 
 
-Motivated by the challenges outlined above and situated in the three application settings described, this thesis develops visual analytics approaches to support the transformation, exploration, comparison, extraction, and interpretation of complex event sequence data.
+Motivated by the challenges outlined above and situated in two application domains, one of which contains two learning settings, this thesis develops visual analytics approaches to support the transformation, exploration, comparison, extraction, and interpretation of complex event sequence data.
 
 Four research questions are formulated as follows:
 
@@ -1005,7 +1005,7 @@ Interactive touchscreen exhibits have become prevalent in informal learning sett
 
 The design of such environments is frequently framed through the notion of \textit{exploranation}, which combines exploratory and explanatory visualization to scaffold communication and learning~\cite{ynnerman2018exploranation}.
 
-To study how visitors engage with these exhibits, their interactions are logged, producing event sequences that reflect the unique exploration approaches individuals adopt.
+To study how participants engage with these exhibits, their interactions are logged, producing event sequences that reflect the unique exploration approaches individuals adopt.
 
 
 
@@ -1013,9 +1013,9 @@ Analyzing such logs to understand learning is an established pursuit, and visual
 
 The unstructured nature of data generated in informal learning environments increases the complexity of this analytical task.
 
-Visitors are self-directed; sessions can be brief and highly variable; learning outcomes are typically unlabeled; and multiple visitors may interact concurrently or consecutively.
+Participants are self-directed; sessions can be brief and highly variable; learning outcomes are typically unlabeled; and multiple participants may interact concurrently or consecutively.
 
-While interaction logs have informed studies of visitor engagement, exhibit use, and redesign~\cite{hinrichs2008emdialog, ma2020decoding}, existing approaches largely remain at the level of observable patterns, such as frequencies, paths, clusters, or transitions.
+While interaction logs have informed studies of participant engagement, exhibit use, and redesign~\cite{hinrichs2008emdialog, ma2020decoding}, existing approaches largely remain at the level of observable patterns, such as frequencies, paths, clusters, or transitions.
 
 There remains a significant gap in coupling these observable behaviors with the underlying cognitive constructs.
 
@@ -1169,7 +1169,7 @@ The contribution of this work is a visual analytics approach that enables multi-
 
 To this end, both the investigation of individual behavior and multi-user comparison are supported, and a dynamic time warping measure is employed to identify similarities across sequences, thereby surfacing the strategies users adopt.
 
-The approach is examined through an experimental study in which 14 science center visitors complete tasks of increasing complexity, designed to elicit different levels of cognitive processing.
+The approach is examined through an experimental study in which 14 science center participants complete tasks of increasing complexity, designed to elicit different levels of cognitive processing.
 
 As a result, a set of task-solving strategies is identified, including ``cascading'' and ``nested-loop'', which reflect different levels of the cognitive processes described in Bloom's taxonomy~\cite{bloom1956taxonomy, anderson2001taxonomy}.
 
@@ -1553,9 +1553,9 @@ At the core of these public exhibits is the concept of \textit{exploranation}, a
 
 To structure and evaluate user engagement, designers often draw on educational frameworks such as Bloom's taxonomy, which defines a cognitive hierarchy ranging from lower-order retrieval and understanding to higher-order evaluation and creation~\cite{anderson2001taxonomy, bloom1956taxonomy}.
 
-However, how public visitors navigate these environments and construct knowledge remains understudied~\cite{besancon2021state}.
+However, how public participants navigate these environments and construct knowledge remains understudied~\cite{besancon2021state}.
 
-Interaction logs capture detailed traces of visitor behavior, yet mapping such low-level log data to higher-level cognitive learning processes is non-trivial.
+Interaction logs capture detailed traces of participant behavior, yet mapping such low-level log data to higher-level cognitive learning processes is non-trivial.
 
 
 
@@ -1565,7 +1565,7 @@ It visualizes Swedish demographic and societal data via a choropleth map on a la
 
 Selecting a geographic region triggers a pop-up information panel (henceforth ``infopanel'') displaying localized statistical summaries.
 
-Within these infopanels, visitors can adjust temporal sliders or apply categorical filters, such as \textit{Gender} and \textit{Year}, across four thematic dimensions: \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}.
+Within these infopanels, participants can adjust temporal sliders or apply categorical filters, such as \textit{Gender} and \textit{Year}, across four thematic dimensions: \textit{Age}, \textit{Education}, \textit{Income}, and \textit{Population}.
 
 The resulting interaction sequences are heterogeneous and multi-granular, varying substantially across individuals and reflecting a wide range of problem-solving strategies and exploration behaviors.
 
@@ -1583,7 +1583,7 @@ An experiment consisting of five tasks of increasing complexity, aligned with Bl
 
 The proposed approach is implemented in a visual analytics system, \textsc{VISID} (\textbf{VIS}ualization of \textbf{I}nteraction \textbf{D}ynamics), and targets users such as educational researchers, exhibit designers, and science center stakeholders.
 
-In the remainder of this chapter, individuals interacting with the exhibit are referred to as ``visitors'' or ``participants,'' whereas users of \textsc{VISID} are referred to as ``analysts.''
+In the remainder of this chapter, individuals interacting with the exhibit are referred to as ``participants,'' whereas users of \textsc{VISID} are referred to as ``analysts.''
 
 
 
@@ -1779,7 +1779,7 @@ The primary contributions are summarized as follows:
 
     \textbf{Application scenario}:
 
-    A real-world dataset is collected from an experimental study involving 14 science center visitors, from which task-solving exploration strategies and their connections to cognitive learning processes defined by Bloom's taxonomy~\cite{anderson2001taxonomy, bloom1956taxonomy} are identified.
+    A real-world dataset is collected from an experimental study involving 14 science center participants, from which task-solving exploration strategies and their connections to cognitive learning processes defined by Bloom's taxonomy~\cite{anderson2001taxonomy, bloom1956taxonomy} are identified.
 
 \end{itemize}
 
@@ -1811,7 +1811,7 @@ Despite the value of this controlled and theory-driven analysis, the 14 particip
 
 This raises the question of how readily these findings transfer to settings where such structure cannot be assumed.
 
-Visitors arrive without assigned tasks and with unknown intents; the number of sequences far exceeds what individual inspection can cover, and whether the identified strategies remain recognizable or entirely new ones emerge is itself an open question.
+Participants arrive without assigned tasks and with unknown intents; the number of sequences far exceeds what individual inspection can cover, and whether the identified strategies remain recognizable or entirely new ones emerge is itself an open question.
 
 The analytical challenge therefore shifts from analyzing a controlled set of sequences to extracting meaningful patterns from large and unstructured data.
 
@@ -1841,11 +1841,11 @@ However, rather than controlled experimental data from predefined tasks, this wo
 
 This transition introduces several analytical challenges.
 
-Visitors' goals become unpredictable, their sequences exhibit greater variability in duration and structure, and behavioral patterns are no longer organized around predefined tasks.
+Participants' goals become unpredictable, their sequences exhibit greater variability in duration and structure, and behavioral patterns are no longer organized around predefined tasks.
 
 Moreover, the increased data volume renders detailed inspection of individual sequences impractical.
 
-Compounding this, interaction patterns rarely manifest as exact repetitions: visitors may perform similar actions in different orders, spend varying amounts of time on specific activities, and pursue different goals while exhibiting comparable underlying behaviors.
+Compounding this, interaction patterns rarely manifest as exact repetitions: participants may perform similar actions in different orders, spend varying amounts of time on specific activities, and pursue different goals while exhibiting comparable underlying behaviors.
 
 Identifying meaningful patterns thus requires methods that accommodate such variability while preserving behaviorally significant similarities.
 
@@ -1869,7 +1869,7 @@ It extends the multi-level exploration perspective to the cohort level and exami
 
 The proposed approach is implemented in a visual analytics system, \textit{re}\textsc{VISID} (\textit{\textbf{re}}visiting the \textbf{VIS}ualization of \textbf{I}nteraction \textbf{D}ynamics), and targets users such as educational researchers, exhibit designers, and science center stakeholders.
 
-As in the previous chapter, individuals interacting with the exhibit are referred to as ``visitors'' or ``participants,'' whereas users of \textit{re}\textsc{VISID} are referred to as ``analysts.''
+As in the previous chapter, individuals interacting with the exhibit are referred to as ``participants,'' whereas users of \textit{re}\textsc{VISID} are referred to as ``analysts.''
 
 
 
@@ -2033,7 +2033,7 @@ This design allows analysts to move fluidly between summarized behavioral patter
 
 
 
-Finally, this work addresses \textbf{RQ4} by supporting the interpretation and mapping of complex interaction patterns in relation to higher-level constructs.
+It further addresses \textbf{RQ4} by enabling the interpretation and mapping of complex interaction patterns in relation to higher-level constructs.
 
 The extracted strategies were interpreted through the lenses of Bloom's taxonomy~\cite{anderson2001taxonomy, bloom1956taxonomy} and a three-factor situational interest model~\cite{lisa2010measuring}, relating minimal engagement to lower-order cognitive processing and sustained sessions with repeated attribute changes to deeper engagement.
 
@@ -2041,7 +2041,7 @@ This illustrates how extracted interaction patterns can be mapped to meaningful 
 
 
 
-The extracted strategies describe how visitors moved through the exhibit, yet they leave open how those visitors actually reason about what they explore, including interconnections, feedback, and emergence.
+The extracted strategies describe how participants moved through the exhibit, yet they leave open how those participants actually reason about what they explore, including interconnections, feedback, and emergence.
 
 The analytical challenge therefore shifts from extracting and characterizing patterns to interpreting what those patterns imply about how users reason, which calls for grounding the analysis in an explicit theoretical framework of cognition.
 
@@ -2355,11 +2355,11 @@ This work also addresses \textbf{RQ3}, which investigates how algorithmic workfl
 
 The motif discovery pipeline surfaces recurring behavioral patterns algorithmically, while interactive clustering, motif exploration, and coordinated views keep computational outcomes open to interpretation and validation through domain expertise.
 
-This directly realizes the thesis contribution on \textit{user-driven extraction and characterization of interaction patterns} (C3).
+This advances the thesis contribution on \textit{user-driven extraction and characterization of interaction patterns} (C3).
 
 
 
-Finally, this work addresses \textbf{RQ4} by supporting the interpretation and mapping of complex interaction patterns in relation to higher-level constructs.
+This work also addresses \textbf{RQ4} by supporting the interpretation and mapping of complex interaction patterns in relation to higher-level constructs.
 
 The ST hierarchy is adopted as both a design lens and an interpretive framework, establishing an explicit bridge between low-level interaction events and higher-level reasoning constructs.
 
@@ -2541,7 +2541,7 @@ Such logs are routinely collected across a wide range of digital environments.
 
 Yet, their analysis has often relied on aggregate statistics, isolated metrics, or fully automated methods that conceal the sequential, temporal, and individual character of the underlying behavior.
 
-Across three application domains, namely en-route air traffic control, interactive science center exhibits, and digital learning environments, this thesis has developed visual analytics approaches that together span the entire analytical process (\cref{fig:va-process}).
+Across two application domains, namely en-route air traffic control and digital learning environments (including both interactive science center exhibits and formal educational settings), this thesis has developed visual analytics approaches that together span the entire analytical process (\cref{fig:va-process}).
 
 The conclusions drawn below trace this same progression, beginning with the nature of the data itself.
 
